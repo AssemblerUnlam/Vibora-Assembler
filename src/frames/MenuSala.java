@@ -20,7 +20,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JPasswordField;
 
 @SuppressWarnings("serial")
-public class MenuLogin extends JDialog {
+public class MenuSala extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private JTextField textUsuario;
@@ -29,7 +29,7 @@ public class MenuLogin extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public MenuLogin() {
+	public MenuSala() {
 		setResizable(false);
 		setBackground(Color.WHITE);
 		setTitle("Inicio de Sesi\u00F3n");
