@@ -11,16 +11,10 @@ import javax.swing.border.EmptyBorder;
 
 import cliente.Cliente;
 
-import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
-import javax.swing.JPasswordField;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.event.ListSelectionEvent;
 
