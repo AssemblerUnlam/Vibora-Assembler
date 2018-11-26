@@ -2,6 +2,8 @@ package frames;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
@@ -10,6 +12,7 @@ import javax.swing.border.EmptyBorder;
 import cliente.Cliente;
 
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -18,13 +21,14 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
 import javax.swing.JPasswordField;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.event.ListSelectionEvent;
 
 @SuppressWarnings("serial")
 public class MenuSala extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
-	private JTextField textUsuario;
-	private JPasswordField passContraseña;
+	private JTextField textField;
 
 	/**
 	 * Create the dialog.
@@ -32,7 +36,7 @@ public class MenuSala extends JDialog {
 	public MenuSala() {
 		setResizable(false);
 		setBackground(Color.WHITE);
-		setTitle("Inicio de Sesi\u00F3n");
+		setTitle("SALAS");
 		setBounds(530, 430, 300, 250);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBackground(Color.GREEN);
@@ -40,68 +44,40 @@ public class MenuSala extends JDialog {
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		
-		textUsuario = new JTextField();
-		textUsuario.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				textUsuario.setText("");
+		JButton botonUnirse = new JButton("Unirse");
+		botonUnirse.setBounds(160, 160, 100, 50);
+		contentPanel.add(botonUnirse);
+		botonUnirse.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				dispose();
 			}
 		});
-		textUsuario.setToolTipText("");
-		textUsuario.addKeyListener(new KeyAdapter() {
-
-			@Override
-			public void keyTyped(KeyEvent arg0) {
-
-			}
-		});
-		textUsuario.setBounds(140, 40, 120, 20);
-		contentPanel.add(textUsuario);
-		textUsuario.setColumns(10);
-		{
-			JLabel lblUsuario = new JLabel("Usuario");
-			lblUsuario.setBounds(30, 40, 90, 20);
-			contentPanel.add(lblUsuario);
-		}
-		{
-			JLabel lblContraseña = new JLabel("Contrase\u00F1a");
-			lblContraseña.setBounds(30, 100, 90, 20);
-			contentPanel.add(lblContraseña);
-		}
+		botonUnirse.setEnabled(false);
 		
-		passContraseña = new JPasswordField();
-		passContraseña.setBounds(140, 100, 120, 20);
-		contentPanel.add(passContraseña);
-		{
-			
-			{
-				JButton okButton = new JButton("Jugar");
-				okButton.setBounds(30, 160, 100, 50);
-				contentPanel.add(okButton);
-				okButton.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						MenuSala menuSala;
-						menuSala = new MenuSala();
-						menuSala.setVisible(true);
-						
-						//if(conectar.iniciarSesion(textUsuario.getText(), String.valueOf(passContraseña.getPassword())))
-							//dispose();
-					}
-				});
+		DefaultListModel model = new DefaultListModel();
+		JList lista = new JList();
+		lista.addListSelectionListener(new ListSelectionListener() {
+			public void valueChanged(ListSelectionEvent arg0) {
+				botonUnirse.setEnabled(true);
 			}
+		});
+		lista.setBounds(30, 40, 230, 94);
+		contentPanel.add(lista);
 			
-			
-			{
-				JButton cancelButton = new JButton("Volver");
-				cancelButton.setBounds(160, 160, 100, 50);
-				contentPanel.add(cancelButton);
-				cancelButton.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent arg0) {
-						dispose();
-					}
-				});
-				cancelButton.setActionCommand("Cancel");
+		JButton botonCrearSala = new JButton("Crear Sala");
+		botonCrearSala.setBounds(30, 160, 100, 50);
+		contentPanel.add(botonCrearSala);
+		
+		textField = new JTextField();
+		textField.setBounds(30, 11, 230, 20);
+		contentPanel.add(textField);
+		textField.setColumns(10);
+		botonCrearSala.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				model.addElement(textField.getText());
+				lista.setModel(model);
 			}
-		}
+		});
+		
 	}
 }

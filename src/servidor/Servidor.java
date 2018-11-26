@@ -53,7 +53,6 @@ public class Servidor extends Thread {
 				}
 			}
 		} catch (IOException e) {
-			log.append("Falló la conexión." + System.lineSeparator());
 		}
 		
 	}

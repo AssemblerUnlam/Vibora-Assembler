@@ -80,10 +80,10 @@ public class MenuLogin extends JDialog {
 				contentPanel.add(okButton);
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-//						MenuSala menuSala;
-//						menuSala = new MenuSala();
-//						menuSala.setVisible(true);
-						Cliente cliente = new Cliente(textUsuario.getText());
+						MenuSala menuSala;
+						menuSala = new MenuSala();
+						menuSala.setVisible(true);
+						//Cliente cliente = new Cliente(textUsuario.getText());
 						
 						//if(conectar.iniciarSesion(textUsuario.getText(), String.valueOf(passContraseña.getPassword())))
 							//dispose();
