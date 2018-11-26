@@ -81,7 +81,7 @@ public class MenuLogin extends JDialog {
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						MenuSala menuSala;
-						menuSala = new MenuSala();
+						menuSala = new MenuSala(textUsuario.getText());
 						menuSala.setVisible(true);
 						//Cliente cliente = new Cliente(textUsuario.getText());
 						

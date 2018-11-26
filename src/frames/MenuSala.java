@@ -33,7 +33,7 @@ public class MenuSala extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public MenuSala() {
+	public MenuSala(String nombreUsuario) {
 		setResizable(false);
 		setBackground(Color.WHITE);
 		setTitle("SALAS");
@@ -44,12 +44,17 @@ public class MenuSala extends JDialog {
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		
+		textField = new JTextField();
+		textField.setBounds(30, 11, 230, 20);
+		contentPanel.add(textField);
+		textField.setColumns(10);
+		
 		JButton botonUnirse = new JButton("Unirse");
 		botonUnirse.setBounds(160, 160, 100, 50);
 		contentPanel.add(botonUnirse);
 		botonUnirse.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				dispose();
+				Cliente cliente = new Cliente(nombreUsuario);
 			}
 		});
 		botonUnirse.setEnabled(false);
@@ -68,10 +73,6 @@ public class MenuSala extends JDialog {
 		botonCrearSala.setBounds(30, 160, 100, 50);
 		contentPanel.add(botonCrearSala);
 		
-		textField = new JTextField();
-		textField.setBounds(30, 11, 230, 20);
-		contentPanel.add(textField);
-		textField.setColumns(10);
 		botonCrearSala.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				model.addElement(textField.getText());
