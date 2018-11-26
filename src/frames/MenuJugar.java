@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import audio.Sonido;
 import utilidades.Conexion;
 
 import javax.imageio.ImageIO;
@@ -71,6 +72,10 @@ public class MenuJugar extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				MenuRegistro ventanaRegistro = new MenuRegistro();
 				ventanaRegistro.setVisible(true);
+				Sonido sonido = new Sonido();
+				File a = new File("megaman-x-select.wav");
+				sonido.abrir(a);
+				sonido.reproducir();
 			}
 		});
 		btnRegistro.setBounds(300, 350, 200, 50);
@@ -83,6 +88,10 @@ public class MenuJugar extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				MenuLogin ventanaLogin = new MenuLogin();
 				ventanaLogin.setVisible(true);
+				Sonido sonido = new Sonido();
+				File a = new File("megaman-x-select.wav");
+				sonido.abrir(a);
+				sonido.reproducir();
 			}
 		});
 		btnLogin.setBounds(300, 450, 200, 50);
