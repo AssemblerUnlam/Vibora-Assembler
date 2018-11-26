@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import entidades.Vibora;
-import juego.ModeloVibora;
+import juego.Juego;
 import servidor.AccionesServidor;
 import servidor.EntradaServidor;
 import servidor.SalidaServidor;
@@ -62,7 +62,7 @@ public class ManejoJugador implements Runnable, AccionesServidor {
 				socketJugador.close();
 			} catch(IOException e){ e.printStackTrace();}
 			if(estado == EstadoJugador.LOGUEADO)
-				ModeloVibora.eliminarJugador(nombre); 
+				Juego.eliminarJugador(nombre); 
 			logger.jugadorDesconectado(socketJugador.toString(), nombre);
 		}
 	}
@@ -70,7 +70,7 @@ public class ManejoJugador implements Runnable, AccionesServidor {
 	@Override
 	public void recibirNombre(String nombre) {
 		String nuevoNombre = nombre;
-		if(ModeloVibora.salidaUsuario(nombre) || nombre.equals("null") || nombre.length() == 0){
+		if(Juego.salidaUsuario(nombre) || nombre.equals("null") || nombre.length() == 0){
 			nombreMal();
 			finalizar();
 			
@@ -78,7 +78,7 @@ public class ManejoJugador implements Runnable, AccionesServidor {
 			nombreOK();
 			if(estado == EstadoJugador.INICIO){
 				this.nombre=nombre;
-				ModeloVibora.agregarJugador(nuevoNombre, this);
+				Juego.agregarJugador(nuevoNombre, this);
 				logger.unirJugadorAJuego(nuevoNombre);
 			}
 		}
@@ -91,7 +91,7 @@ public class ManejoJugador implements Runnable, AccionesServidor {
 	public void moverVibora() {
 		if(estado != EstadoJugador.LOGUEADO) 
 			return;
-		switch( ModeloVibora.chequearColision(vibora)){
+		switch( Juego.chequearColision(vibora)){
 			case 1: // collision
 				vibora.muere();
 				salidaServidor.muerteVibora();
@@ -99,22 +99,22 @@ public class ManejoJugador implements Runnable, AccionesServidor {
 				break;
 			case 0: // movimiento regular
 				vibora.mover();
-				ModeloVibora.notificarNuevoMovimientoCabeza(vibora.getCabeza(),nombre,0);
-				ModeloVibora.notificarNuevoMovimientoCola(vibora.getCola(),nombre);
+				Juego.notificarNuevoMovimientoCabeza(vibora.getCabeza(),nombre,0);
+				Juego.notificarNuevoMovimientoCola(vibora.getCola(),nombre);
 				vibora.borrarCola();
 				break;
 			case -1 :// come manzana para crecer
 				vibora.mover();
 				puntaje ++;
-				ModeloVibora.notificarNuevoMovimientoCabeza(vibora.getCabeza(), nombre,1);
-				ModeloVibora.removerFruta(vibora.getCabeza(), -1);
+				Juego.notificarNuevoMovimientoCabeza(vibora.getCabeza(), nombre,1);
+				Juego.removerFruta(vibora.getCabeza(), -1);
 				break;
 			case -2 :// come manzana azul para crecer y velocidad
 				vibora.mover();
 				puntaje ++;
-				ModeloVibora.notificarNuevoMovimientoCabeza(vibora.getCabeza(), nombre,1);
-				ModeloVibora.removerFruta(vibora.getCabeza(), -2);
-				ModeloVibora.cambiarVelocidad();
+				Juego.notificarNuevoMovimientoCabeza(vibora.getCabeza(), nombre,1);
+				Juego.removerFruta(vibora.getCabeza(), -2);
+				Juego.cambiarVelocidad();
 				break;
 				
 			}
@@ -143,7 +143,7 @@ public class ManejoJugador implements Runnable, AccionesServidor {
 
 	@Override
 	public void listaJugadores() {
-		salidaServidor.enviarListaJugadores(ModeloVibora.getNombreJugadores());
+		salidaServidor.enviarListaJugadores(Juego.getNombreJugadores());
 
 	}
 	
@@ -151,22 +151,22 @@ public class ManejoJugador implements Runnable, AccionesServidor {
 
 	@Override
 	public void cambioListaJugadores(){
-		salidaServidor.enviarListaJugadores(ModeloVibora.getNombreJugadores());
+		salidaServidor.enviarListaJugadores(Juego.getNombreJugadores());
 	}
 
 	@Override
 	public void nuevaVibora(){
 		vibora = new Vibora();
 
-		ModeloVibora.aparicionVibora(vibora.getCuerpo());
+		Juego.aparicionVibora(vibora.getCuerpo());
 
-		for (ManejoJugador handle : ModeloVibora.getTodasLasViboras()) {
+		for (ManejoJugador handle : Juego.getTodasLasViboras()) {
 			salidaServidor.enviarVibora(handle.nombre, handle.getCuerpoVibora());
 		}
 		
-		ModeloVibora.notificarNuevaVibora(vibora.getCuerpo(),nombre);
+		Juego.notificarNuevaVibora(vibora.getCuerpo(),nombre);
 		
-		ArrayList<Punto> appleListCopy = new ArrayList<>(ModeloVibora.getTodasLasFrutas());
+		ArrayList<Punto> appleListCopy = new ArrayList<>(Juego.getTodasLasFrutas());
 
 		for ( Punto apple : appleListCopy){
 			salidaServidor.nuevaFruta(apple);
@@ -184,7 +184,7 @@ public class ManejoJugador implements Runnable, AccionesServidor {
 	@Override
 	public void cambiarDireccion(String dir) {
 		if(dir.equals("M")){
-			ModeloVibora.moverUnicaVibora(nombre);
+			Juego.moverUnicaVibora(nombre);
 		}else{
 			Direccion d = null;
 			switch (dir){

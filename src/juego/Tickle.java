@@ -10,7 +10,7 @@ public class Tickle extends Thread {
 		while(true){
 			try {
 				Thread.sleep(tiempo);
-				ModeloVibora.moverVibora();
+				Juego.moverVibora();
 				if(tiempo != base ){
 					if (duracion == 100) {
 						duracion = 0;
@@ -20,11 +20,11 @@ public class Tickle extends Thread {
 				}
 				if(fruta >= 5){
 					fruta = 0;
-					ModeloVibora.agregarFruta();
+					Juego.agregarFruta();
 				}
 				if(velocidadFruta >= 200){
 					velocidadFruta = 0;
-					ModeloVibora.agregarVelocidadFruta();
+					Juego.agregarVelocidadFruta();
 				}
 				
 				fruta++;

@@ -2,7 +2,7 @@ package utilidades;
 
 import java.util.Random;
 
-import juego.ModeloVibora;
+import juego.Juego;
 
 public class Punto {
 	@Override
@@ -37,8 +37,8 @@ public class Punto {
 	}
 	
 	public static Punto randomCoord(){
-		int x = rnd.nextInt(ModeloVibora.ANCHO-10);
-		int y = rnd.nextInt(ModeloVibora.ALTO-10);
+		int x = rnd.nextInt(Juego.ANCHO-10);
+		int y = rnd.nextInt(Juego.ALTO-10);
 		return new Punto(x, y);
 	}
 }

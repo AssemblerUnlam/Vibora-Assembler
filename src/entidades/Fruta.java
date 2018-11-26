@@ -2,7 +2,7 @@ package entidades;
 
 import java.util.ArrayList;
 
-import juego.ModeloVibora;
+import juego.Juego;
 import utilidades.Punto;
 
 public class Fruta {
@@ -19,7 +19,7 @@ public class Fruta {
 	public synchronized void agregarFruta (Punto p){
 		if(listaFrutas.contains(p) || (cantidadFrutas>=200)) return;
 		listaFrutas.add(p);
-		ModeloVibora.notificarNuevaFruta(p);
+		Juego.notificarNuevaFruta(p);
 		cantidadFrutas++;
 	}
 	
@@ -27,7 +27,7 @@ public class Fruta {
 	public synchronized void agregarVelocidadFruta (Punto p){
 		if(listaFrutas.contains(p) || (velocidadFruta>=4)) return;
 		listaFrutas.add(p);
-		ModeloVibora.notificarNuevaVelocidadFruta(p);
+		Juego.notificarNuevaVelocidadFruta(p);
 		velocidadFruta++;
 	}
 	

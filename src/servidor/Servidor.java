@@ -17,7 +17,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 import juego.MensajesAJugador;
-import juego.ModeloVibora;
+import juego.Juego;
 import jugador.JugadorLogueado;
 import jugador.ManejoJugador;
 
@@ -42,7 +42,7 @@ public class Servidor extends Thread {
 			servidor = new ServerSocket(puerto);
 			log.append("Esperando conexiones..." + System.lineSeparator());
 			servidor.setSoTimeout(1000);
-			ModeloVibora.iniciarMapa();
+			Juego.iniciarMapa();
 			while(!detener){
 				try{
 					Socket socketJugador = servidor.accept();

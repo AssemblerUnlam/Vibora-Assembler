@@ -21,7 +21,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
 import juego.PantallaJuego;
-import juego.ModeloVibora;
+import juego.Juego;
 import jugador.Jugador;
 import utilidades.Punto;
 
@@ -85,9 +85,9 @@ public class Cliente extends JFrame{
 
 		comienzoPanel = new JPanel(new GridBagLayout() );
 		pantalla = new JPanel(new BorderLayout() );
-		pantallaJuego = new PantallaJuego(ModeloVibora.ANCHO,ModeloVibora.ALTO,SCALE);
+		pantallaJuego = new PantallaJuego(Juego.ANCHO,Juego.ALTO,SCALE);
 
-		pantalla.setPreferredSize(new Dimension(ModeloVibora.ANCHO*SCALE,ModeloVibora.ALTO*SCALE));
+		pantalla.setPreferredSize(new Dimension(Juego.ANCHO*SCALE,Juego.ALTO*SCALE));
 		listaJugadores = new JList<>();
 		listaJugadoresPane = new JScrollPane(listaJugadores);
 
@@ -187,7 +187,7 @@ public class Cliente extends JFrame{
 			}
 		});
 		setResizable(false);
-		setPreferredSize(new Dimension(ModeloVibora.ANCHO*SCALE+150, ModeloVibora.ALTO*SCALE));
+		setPreferredSize(new Dimension(Juego.ANCHO*SCALE+150, Juego.ALTO*SCALE));
 		setTitle("Snake");
 		setContentPane(comienzoPanel);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

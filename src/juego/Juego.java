@@ -10,7 +10,7 @@ import jugador.ManejoJugador;
 import utilidades.Punto;
 
 
-public class ModeloVibora {
+public class Juego {
 	public static int ANCHO = 200;
 	public static int ALTO = 200;
 	static int mapa[][]= new int[ALTO][ANCHO];
