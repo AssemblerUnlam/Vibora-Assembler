@@ -15,7 +15,7 @@ import javax.swing.JComponent;
 import utilidades.Punto;
 
 
-public class Mapa extends JComponent {
+public class PantallaJuego extends JComponent {
 		
 	
 	private static final long serialVersionUID = 1L;
@@ -39,7 +39,7 @@ public class Mapa extends JComponent {
 	int exScale;
 	
 	
-	public Mapa(int ancho,int alto,int scale) {
+	public PantallaJuego(int ancho,int alto,int scale) {
 		
 		
 		this.rangeX = ancho*scale;
@@ -59,7 +59,6 @@ public class Mapa extends JComponent {
 			fondo = ImageIO.read(new File("src/fond.jpg"));
 			
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

@@ -20,7 +20,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
-import juego.Mapa;
+import juego.PantallaJuego;
 import juego.ModeloVibora;
 import jugador.Jugador;
 import utilidades.Punto;
@@ -43,7 +43,7 @@ public class Cliente extends JFrame{
 
 	private JPanel comienzoPanel;
 	private JPanel pantalla;
-	private Mapa mapa;
+	private PantallaJuego pantallaJuego;
 	private JTextField nombreField;
 	private JLabel nombreLabel ;
 	private JButton botonAceptar;
@@ -85,7 +85,7 @@ public class Cliente extends JFrame{
 
 		comienzoPanel = new JPanel(new GridBagLayout() );
 		pantalla = new JPanel(new BorderLayout() );
-		mapa = new Mapa(ModeloVibora.ANCHO,ModeloVibora.ALTO,SCALE);
+		pantallaJuego = new PantallaJuego(ModeloVibora.ANCHO,ModeloVibora.ALTO,SCALE);
 
 		pantalla.setPreferredSize(new Dimension(ModeloVibora.ANCHO*SCALE,ModeloVibora.ALTO*SCALE));
 		listaJugadores = new JList<>();
@@ -95,7 +95,7 @@ public class Cliente extends JFrame{
 		nombreField = new JTextField(5);
 		botonAceptar = new JButton("Conectar");
 
-		mapa.addKeyListener( 
+		pantallaJuego.addKeyListener( 
 				new KeyListener() {
 
 					@Override
@@ -126,7 +126,7 @@ public class Cliente extends JFrame{
 		botonAceptar.addActionListener( l->{
 			this.nombre = nombreField.getText();
 			setContentPane(pantalla);
-			mapa.requestFocusInWindow();
+			pantallaJuego.requestFocusInWindow();
 			validate();
 			
 			this.direccionConectado = direccionField.getText();
@@ -161,7 +161,7 @@ public class Cliente extends JFrame{
 		listaJugadoresPane.setPreferredSize(new Dimension(150, 50));
 		listaJugadoresPane.setFocusable(false);
 		listaJugadores.setFocusable(false);
-		pantalla.add(mapa,BorderLayout.CENTER);
+		pantalla.add(pantallaJuego,BorderLayout.CENTER);
 		pantalla.add(listaJugadoresPane,BorderLayout.EAST);
 
 		nombreField.setText(this.nombre);
@@ -220,35 +220,35 @@ public class Cliente extends JFrame{
 
 	public void dibujarCuerpo(Collection<Punto> cuerpo,String nombre) {
 		if(nombre.equals(this.nombre)){
-			mapa.dibujarMisPuntos(cuerpo);
+			pantallaJuego.dibujarMisPuntos(cuerpo);
 		}else{
-			mapa.dibujarPuntos(cuerpo);
+			pantallaJuego.dibujarPuntos(cuerpo);
 		}
 	}
 
 	public void dibujarCabeza(Punto cabeza,String nombre){
 		if(nombre.equals(this.nombre)){
-			mapa.dibujarMiCabeza(cabeza);
+			pantallaJuego.dibujarMiCabeza(cabeza);
 		}else{
-			mapa.dibujarCabeza(cabeza);
+			pantallaJuego.dibujarCabeza(cabeza);
 		}
 	}
 
 	public void dibujarCola(Punto cola){
-		mapa.dibujarCola(cola);
+		pantallaJuego.dibujarCola(cola);
 	}
 
 	public void borrarCuerpo(ArrayList<Punto> bodyP) {
-		mapa.borrarCuerpo(bodyP);
+		pantallaJuego.borrarCuerpo(bodyP);
 
 	}
 	
 	public void dibujarFruta(Punto a){
-		mapa.dibujarFruta(a);
+		pantallaJuego.dibujarFruta(a);
 	}
 
 	public void dibujarVelocidadFruta(Punto a){
-		mapa.dibujarVelocidadFruta(a);
+		pantallaJuego.dibujarVelocidadFruta(a);
 	}
 	
 	public void reiniciar(){
