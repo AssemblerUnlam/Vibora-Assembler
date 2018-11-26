@@ -1,6 +1,7 @@
 package juego;
 
 import jugador.JugadorLogueado;
+import servidor.Servidor;
 
 public class MensajesAJugador implements JugadorLogueado{
 
@@ -17,13 +18,13 @@ public class MensajesAJugador implements JugadorLogueado{
 
 	@Override
 	public void jugadorDesconectado(String ip, String nombre) {
-		System.out.println("Jugador" + nombre + " desconectado desde" + ip );
+		Servidor.getLog().append("Jugador" + nombre + "desconectado desde" + ip + System.lineSeparator());
 		
 	}
 
 	@Override
 	public void obtenerNombreJugador(String ip, String nombre) {
-		System.out.println("Jugador conectado a " +ip +" nuevo nombre es " + nombre  );
+		Servidor.getLog().append("Jugador conectado a " +ip +" nuevo nombre es " + nombre + System.lineSeparator());
 		
 	}
 
