@@ -6,10 +6,15 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import audio.Sonido;
 import cliente.Cliente;
 import utilidades.Conexion;
 
 import javax.imageio.ImageIO;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
@@ -54,8 +59,11 @@ public class MenuInicio extends JFrame {
 	 * Create the frame.
 	 * @throws SQLException 
 	 * @throws ClassNotFoundException 
+	 * @throws LineUnavailableException 
+	 * @throws UnsupportedAudioFileException 
+	 * @throws IOException 
 	 */
-	public MenuInicio() throws ClassNotFoundException, SQLException {
+	public MenuInicio() throws ClassNotFoundException, SQLException, LineUnavailableException, IOException, UnsupportedAudioFileException {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 350);
@@ -66,6 +74,11 @@ public class MenuInicio extends JFrame {
 		contentPane.setLayout(null);
 		Conexion.crearBase();
 		
+		Clip sonido = AudioSystem.getClip();
+        File a = new File("megaman_stage_start.wav");
+        sonido.open(AudioSystem.getAudioInputStream(a));
+        sonido.start();
+        
 		JButton btnJugar = new JButton("Jugar");
 		btnJugar.setBackground(Color.YELLOW);
 		btnJugar.addActionListener(new ActionListener() {
@@ -77,6 +90,11 @@ public class MenuInicio extends JFrame {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+				
+				Sonido sonido = new Sonido();
+				File a = new File("megaman-x-select.wav");
+				sonido.abrir(a);
+				sonido.reproducir();
 //				Cliente cliente = new Cliente();
 //				dispose();
 			}
@@ -90,6 +108,10 @@ public class MenuInicio extends JFrame {
 		btnSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();
+				Sonido sonido = new Sonido();
+				File a = new File("megaman-x-select.wav");
+				sonido.abrir(a);
+				sonido.reproducir();
 			}
 		});
 		btnSalir.setBounds(300, 450, 200, 50);

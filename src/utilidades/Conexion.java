@@ -1,5 +1,6 @@
 package utilidades;
 
+import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -7,6 +8,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
+
+import audio.Sonido;
 
 public class Conexion {
 
@@ -58,6 +61,10 @@ public class Conexion {
 			ps.setInt(3, 0);
 			ps.execute();
 			desconectar();
+			Sonido sonido = new Sonido();
+			File a = new File("mario-bros_vida.wav");
+			sonido.abrir(a);
+			sonido.reproducir();
 			JOptionPane.showMessageDialog(null, "¡Bienvenido " + usuario + " a Snake The GAME!", "Bienvenido", 1);
 			return true;
 		} catch (SQLException e) {
