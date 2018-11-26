@@ -80,6 +80,7 @@ public class MenuLogin extends JDialog {
 				contentPanel.add(okButton);
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						Cliente cliente = new Cliente(textUsuario.getText());
 						//Conexion conectar = new Conexion();
 						
 						//if(conectar.iniciarSesion(textUsuario.getText(), String.valueOf(passContraseña.getPassword())))

@@ -56,10 +56,10 @@ public class Cliente extends JFrame{
 	
 	
 
-	public Cliente() {
+	public Cliente(String nombreUsuario) {
 		puerto = 1234;
 		direccionConectado = "127.0.0.1";
-		nombre = "Default";
+		nombre = nombreUsuario;
 		conectado = false;
 		iniciar();
 	}
@@ -93,7 +93,7 @@ public class Cliente extends JFrame{
 
 		
 		nombreField = new JTextField(5);
-		botonAceptar = new JButton("Connect");
+		botonAceptar = new JButton("Conectar");
 
 		mapa.addKeyListener( 
 				new KeyListener() {
@@ -135,8 +135,8 @@ public class Cliente extends JFrame{
 
 		});
 		
-		direccionLabel = new JLabel("Enter the Adress: ");
-		nombreLabel = new JLabel("Enter the name: ");
+		direccionLabel = new JLabel("IP Servidor: ");
+		nombreLabel = new JLabel("Nombre de usuario: ");
 		
 		
 		GridBagConstraints c = new GridBagConstraints();
@@ -164,7 +164,7 @@ public class Cliente extends JFrame{
 		pantalla.add(mapa,BorderLayout.CENTER);
 		pantalla.add(listaJugadoresPane,BorderLayout.EAST);
 
-		
+		nombreField.setText(this.nombre);
 		nombreField.addKeyListener(new KeyListener() {
 			
 			@Override
