@@ -41,7 +41,6 @@ public class Servidor extends Thread {
 			log.append("Iniciando el servidor..." + System.lineSeparator());
 			servidor = new ServerSocket(puerto);
 			log.append("Esperando conexiones..." + System.lineSeparator());
-			String ipRemota;
 			servidor.setSoTimeout(1000);
 			ModeloVibora.iniciarMapa();
 			while(!detener){

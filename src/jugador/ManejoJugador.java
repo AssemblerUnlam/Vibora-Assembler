@@ -25,7 +25,7 @@ public class ManejoJugador implements Runnable, AccionesServidor {
 	private boolean detener = false;
 
 	private enum EstadoJugador{ INICIO, LOGUEADO }
-	private EstadoJugador state = EstadoJugador.INICIO;
+	private EstadoJugador estado = EstadoJugador.INICIO;
 
 	public ManejoJugador (Socket socketJugador, JugadorLogueado logger) throws IOException{
 		this.socketJugador = socketJugador;
@@ -61,7 +61,8 @@ public class ManejoJugador implements Runnable, AccionesServidor {
 			try{
 				socketJugador.close();
 			} catch(IOException e){ e.printStackTrace();}
-			if(state == EstadoJugador.LOGUEADO)ModeloVibora.eliminarJugador(nombre); 
+			if(estado == EstadoJugador.LOGUEADO)
+				ModeloVibora.eliminarJugador(nombre); 
 			logger.jugadorDesconectado(socketJugador.toString(), nombre);
 		}
 	}
@@ -75,7 +76,7 @@ public class ManejoJugador implements Runnable, AccionesServidor {
 			
 		}else{
 			nombreOK();
-			if(state == EstadoJugador.INICIO){
+			if(estado == EstadoJugador.INICIO){
 				this.nombre=nombre;
 				ModeloVibora.agregarJugador(nuevoNombre, this);
 				logger.unirJugadorAJuego(nuevoNombre);
@@ -88,7 +89,8 @@ public class ManejoJugador implements Runnable, AccionesServidor {
 
 	@Override
 	public void moverVibora() {
-		if(state != EstadoJugador.LOGUEADO) return;
+		if(estado != EstadoJugador.LOGUEADO) 
+			return;
 		switch( ModeloVibora.chequearColision(vibora)){
 			case 1: // collision
 				vibora.muere();
@@ -169,7 +171,7 @@ public class ManejoJugador implements Runnable, AccionesServidor {
 		for ( Punto apple : appleListCopy){
 			salidaServidor.nuevaFruta(apple);
 		}
-		state = EstadoJugador.LOGUEADO;
+		estado = EstadoJugador.LOGUEADO;
 	}
 
 	@Override
