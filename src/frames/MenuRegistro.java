@@ -6,6 +6,7 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import audio.Sonido;
 import utilidades.Conexion;
 
 import javax.swing.JTextField;
@@ -13,6 +14,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
 import java.sql.SQLException;
 import javax.swing.JLabel;
 import java.awt.event.ActionListener;
@@ -99,6 +101,10 @@ public class MenuRegistro extends JDialog {
 			contentPanel.add(cancelButton);
 			cancelButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
+					Sonido sonido = new Sonido();
+					File a = new File("megaman-x-select.wav");
+					sonido.abrir(a);
+					sonido.reproducir();
 					dispose();
 				}
 			});
