@@ -207,6 +207,7 @@ public class Cliente extends JFrame{
 	}
 
 	public void llenarListaJugadores( ArrayList<Jugador> puntajeJugadores){
+		listaJugadores.setCellRenderer(new Pintar());
 		Collection<String> salida = new ArrayList<>();
 		for(Jugador entry : puntajeJugadores){
 			salida.add(entry.getNombre() +"  "+ entry.getPuntaje());
@@ -259,4 +260,12 @@ public class Cliente extends JFrame{
 		iniciar();
 		setContentPane(comienzoPanel);
 	}
+	
+    private static class Pintar extends DefaultListCellRenderer {
+        public Component getListCellRendererComponent( JList list, Object value, int index, boolean isSelected, boolean cellHasFocus ) {
+            Component c = super.getListCellRendererComponent( list, value, index, isSelected, cellHasFocus );
+	        	c.setForeground( Color.yellow );
+            return c;
+        }
+    }
 }
