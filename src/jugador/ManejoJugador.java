@@ -170,16 +170,16 @@ public class ManejoJugador implements Runnable, AccionesServidor {
 
 		Juego.aparicionVibora(vibora.getCuerpo());
 
-		for (ManejoJugador handle : Juego.getTodasLasViboras()) {
-			salidaServidor.enviarVibora(handle.nombre, handle.getCuerpoVibora(),color);
+		for (ManejoJugador jugador : Juego.getTodasLasViboras()) {
+			salidaServidor.enviarVibora(jugador.nombre, jugador.getCuerpoVibora(),color);
 		}
 		
 		Juego.notificarNuevaVibora(vibora.getCuerpo(),nombre,color);
 		
-		ArrayList<Punto> appleListCopy = new ArrayList<>(Juego.getTodasLasFrutas());
+		ArrayList<Punto> copiaListaFruta = new ArrayList<>(Juego.getTodasLasFrutas());
 
-		for ( Punto apple : appleListCopy){
-			salidaServidor.nuevaFruta(apple);
+		for ( Punto fruta : copiaListaFruta){
+			salidaServidor.nuevaFruta(fruta);
 		}
 		estado = EstadoJugador.LOGUEADO;
 	}

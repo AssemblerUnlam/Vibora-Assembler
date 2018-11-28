@@ -209,7 +209,6 @@ public class Cliente extends JFrame{
 		for(Jugador entry : puntajeJugadores){
 			salida.add(entry.getNombre() +"  "+ entry.getPuntaje());
 		}
-		
 		listaJugadores.setListData(salida.toArray(new String[0]));
 		
 	}
