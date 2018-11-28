@@ -70,9 +70,9 @@ public class PantallaJuego extends JComponent {
 	
 	
 	
-	public void dibujarPuntos(Collection<Punto> punto){
+	public void dibujarPuntos(Collection<Punto> punto,Color color){
 		Graphics g = imagen.getGraphics();
-		g.setColor(Color.RED);
+		g.setColor(color);
 		for (Punto p: punto) {
 			g.fillRect(p.getX()*scale, p.getY()*scale, scale, scale);
 			
@@ -80,9 +80,9 @@ public class PantallaJuego extends JComponent {
 		repaint();
 		
 	}
-	public void dibujarMisPuntos(Collection<Punto> punto){
+	public void dibujarMisPuntos(Collection<Punto> punto,Color color){
 		Graphics g = imagen.getGraphics();
-		g.setColor(Color.WHITE);
+		g.setColor(color);
 		for (Punto p: punto) {
 			g.fillRect(p.getX()*scale, p.getY()*scale, scale, scale);
 			centerX = p.getX()*scale;
@@ -92,16 +92,16 @@ public class PantallaJuego extends JComponent {
 		
 	}
 	
-	public void dibujarCabeza(Punto p){
+	public void dibujarCabeza(Punto p,Color color){
 		Graphics g = imagen.getGraphics();
-		g.setColor(Color.RED);
+		g.setColor(color);
 		g.fillRect(p.getX()*scale, p.getY()*scale, scale, scale);
 		
 		repaint();
 	}
-	public void dibujarMiCabeza(Punto p){
+	public void dibujarMiCabeza(Punto p,Color color){
 		Graphics g = imagen.getGraphics();
-		g.setColor(Color.WHITE);
+		g.setColor(color);
 		g.fillRect(p.getX()*scale, p.getY()*scale, scale, scale);
 		
 		centerX = p.getX()*scale;

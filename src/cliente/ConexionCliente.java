@@ -1,5 +1,6 @@
 package cliente;
 
+import java.awt.Color;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -88,8 +89,8 @@ public class ConexionCliente extends Thread implements  AccionesCliente  {
 	}
 
 	@Override
-	public void iniciarVibora(Collection<Punto> cuerpo, String nombre) {
-		cliente.dibujarCuerpo(cuerpo,nombre);
+	public void iniciarVibora(Collection<Punto> cuerpo, String nombre,Color color) {
+		cliente.dibujarCuerpo(cuerpo,nombre,color);
 		
 	}
 
@@ -99,8 +100,8 @@ public class ConexionCliente extends Thread implements  AccionesCliente  {
 	}
 
 	@Override
-	public void dibujarMovimientoCabeza(Punto cabeza,String nombre) {
-		cliente.dibujarCabeza(cabeza,nombre);
+	public void dibujarMovimientoCabeza(Punto cabeza,String nombre,Color color) {
+		cliente.dibujarCabeza(cabeza,nombre,color);
 	}
 
 	@Override

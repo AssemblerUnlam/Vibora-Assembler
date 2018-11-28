@@ -1,5 +1,6 @@
 package cliente;
 
+import java.awt.Color;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -27,6 +28,7 @@ public class EntradaCliente {
 		String x;
 		String y;
 		Integer puntaje;
+		Color color;
 		
 		try(BufferedReader b = new BufferedReader(new InputStreamReader(entrada))){
 			while(!detener){
@@ -50,7 +52,7 @@ public class EntradaCliente {
 				case "NUEVA VIBORA":
 					cuerpo = new ArrayList<>();
 					nombre = b.readLine();
-					
+					color = new Color(Integer.parseInt(b.readLine()));
 					while(!(x1 = b.readLine()).equals(".")){
 						y = b.readLine();
 						
@@ -58,28 +60,28 @@ public class EntradaCliente {
 						cuerpo.add(p);
 						
 					}
-					
-					accionesCliente.iniciarVibora(cuerpo,nombre);
+					accionesCliente.iniciarVibora(cuerpo,nombre,color);
 					break;
 				case "INICIAR VIBORA":
 					cuerpo = new ArrayList<>();
 					nombre = b.readLine();
-					
+					color = new Color(Integer.parseInt(b.readLine()));
 					while(!(x1 = b.readLine()).equals(".")){
 						y = b.readLine();
 						
 						Punto p = new Punto(Integer.valueOf(x1), Integer.valueOf(y));
 						cuerpo.add(p);
 					}
-					
-					accionesCliente.iniciarVibora(cuerpo,nombre);
+					accionesCliente.iniciarVibora(cuerpo,nombre,color);
 					break;
 				case "MOVER CABEZA":
 					nombre = b.readLine();
 					x1=b.readLine();
 					y=b.readLine();
 					puntaje = Integer.valueOf(b.readLine());
-					accionesCliente.dibujarMovimientoCabeza(new Punto(Integer.valueOf(x1), Integer.valueOf(y)),nombre);
+					String col = b.readLine();
+					color = new Color(Integer.parseInt(col));
+					accionesCliente.dibujarMovimientoCabeza(new Punto(Integer.valueOf(x1), Integer.valueOf(y)),nombre,color);
 					if(puntaje != 0)  accionesCliente.reclasificar(nombre,puntaje); 
 					break;
 				case "MOVER COLA":

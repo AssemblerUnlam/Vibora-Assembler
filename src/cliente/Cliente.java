@@ -1,6 +1,7 @@
 package cliente;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -218,19 +219,19 @@ public class Cliente extends JFrame{
 
 	}
 
-	public void dibujarCuerpo(Collection<Punto> cuerpo,String nombre) {
+	public void dibujarCuerpo(Collection<Punto> cuerpo,String nombre,Color color) {
 		if(nombre.equals(this.nombre)){
-			pantallaJuego.dibujarMisPuntos(cuerpo);
+			pantallaJuego.dibujarMisPuntos(cuerpo,color);
 		}else{
-			pantallaJuego.dibujarPuntos(cuerpo);
+			pantallaJuego.dibujarPuntos(cuerpo,color);
 		}
 	}
 
-	public void dibujarCabeza(Punto cabeza,String nombre){
+	public void dibujarCabeza(Punto cabeza,String nombre,Color color){
 		if(nombre.equals(this.nombre)){
-			pantallaJuego.dibujarMiCabeza(cabeza);
+			pantallaJuego.dibujarMiCabeza(cabeza,color);
 		}else{
-			pantallaJuego.dibujarCabeza(cabeza);
+			pantallaJuego.dibujarCabeza(cabeza,color);
 		}
 	}
 

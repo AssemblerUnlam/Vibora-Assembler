@@ -1,5 +1,6 @@
 package servidor;
 
+import java.awt.Color;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
@@ -44,9 +45,10 @@ public class SalidaServidor implements AccionesServidor {
 
 
 	@Override
-	public void crearVibora(Collection<Punto> cuerpo,String nombre){
+	public void crearVibora(Collection<Punto> cuerpo,String nombre,Color color){
 		os.println("NUEVA VIBORA");
 		os.println(nombre);
+		os.println(Integer.toString(color.getRGB()));
 		for (Punto point : cuerpo) {
 			os.println(point.getX());
 			os.println(point.getY());
@@ -57,9 +59,10 @@ public class SalidaServidor implements AccionesServidor {
 	}
 
 	@Override
-	public void enviarVibora(String nombre,Collection<Punto> cuerpo) {
+	public void enviarVibora(String nombre,Collection<Punto> cuerpo,Color color) {
 		os.println("INICIAR VIBORA");
 		os.println(nombre);
+		os.println(Integer.toString(color.getRGB()));
 		for (Punto point : cuerpo) {
 			os.println(point.getX());
 			os.println(point.getY());
@@ -71,12 +74,13 @@ public class SalidaServidor implements AccionesServidor {
 
 
 	@Override
-	public void enviarMovimientoCabeza(Punto cabeza,String nombre, Integer puntaje) {
+	public void enviarMovimientoCabeza(Punto cabeza,String nombre, Integer puntaje,Color color) {
 		os.println("MOVER CABEZA");
 		os.println(nombre);
 		os.println(cabeza.getX());
 		os.println(cabeza.getY());
 		os.println(puntaje.toString());
+		os.println(Integer.toString(color.getRGB()));
 	}
 
 	@Override

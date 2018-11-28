@@ -1,5 +1,6 @@
 package juego;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.TreeMap;
@@ -59,8 +60,8 @@ public class Juego {
 		listaJugadores.values().forEach(c -> c.cambioListaJugadores());
 	}
 
-	public static synchronized void notificarNuevaVibora(Collection<Punto> cuerpo,String nombre) {
-		listaJugadores.values().forEach( c -> c.dibujarVibora(cuerpo,nombre));
+	public static synchronized void notificarNuevaVibora(Collection<Punto> cuerpo,String nombre,Color color) {
+		listaJugadores.values().forEach( c -> c.dibujarVibora(cuerpo,nombre,color));
 	}
 	
 	public static synchronized Collection<ManejoJugador> getTodasLasViboras(){
@@ -72,8 +73,8 @@ public class Juego {
 		copiaListaJugadores.values().forEach(c -> c.moverVibora());
 	}
 	
-	public static synchronized void notificarNuevoMovimientoCabeza(Punto cabeza,String nombre, int puntaje){
-		listaJugadores.values().forEach(c-> c.enviarMovimientoCabeza(cabeza, nombre,puntaje));
+	public static synchronized void notificarNuevoMovimientoCabeza(Punto cabeza,String nombre, int puntaje,Color color){
+		listaJugadores.values().forEach(c-> c.enviarMovimientoCabeza(cabeza, nombre,puntaje,color));
 		mapa[cabeza.getY()][cabeza.getX()] = 1;
 		
 	}

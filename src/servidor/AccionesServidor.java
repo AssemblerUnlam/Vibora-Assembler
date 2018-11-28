@@ -1,5 +1,6 @@
 package servidor;
 
+import java.awt.Color;
 import java.util.Collection;
 import java.util.TreeMap;
 
@@ -11,13 +12,13 @@ public interface AccionesServidor {
 	public void nombreOK();
 	public void nombreMal();
 	default public void enviarListaJugadores(TreeMap<String, Integer> listaJugadores){}
-	default public void crearVibora(Collection<Punto> cuerpo,String nombre){ }
+	default public void crearVibora(Collection<Punto> cuerpo,String nombre,Color color){ }
 	default public void listaJugadores(){}
 	default public void cambioListaJugadores(){}
-	default void dibujarVibora(Collection<Punto> cuerpo,String nombre){}
+	default void dibujarVibora(Collection<Punto> cuerpo,String nombre,Color color){}
 	default void nuevaVibora(){}
-	default void enviarVibora(String name, Collection<Punto> cuerpo){}
-	default void enviarMovimientoCabeza(Punto cabeza,String nombre, Integer puntaje){}
+	default void enviarVibora(String name, Collection<Punto> cuerpo,Color color){}
+	default void enviarMovimientoCabeza(Punto cabeza,String nombre, Integer puntaje,Color color){}
 	default void enviarMovimientoCola(Punto cola){}
 	public default void cambiarDireccion(String dir){}
 	public default void moverVibora(){}

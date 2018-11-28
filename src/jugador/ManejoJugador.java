@@ -1,9 +1,13 @@
 package jugador;
 
+import java.awt.Color;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Random;
+
+import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 
 import entidades.Vibora;
 import juego.Juego;
@@ -23,6 +27,7 @@ public class ManejoJugador implements Runnable, AccionesServidor {
 	private int puntaje ;
 	private JugadorLogueado logger = null;
 	private boolean detener = false;
+	private Color color;
 
 	private enum EstadoJugador{ INICIO, LOGUEADO }
 	private EstadoJugador estado = EstadoJugador.INICIO;
@@ -31,6 +36,11 @@ public class ManejoJugador implements Runnable, AccionesServidor {
 		this.socketJugador = socketJugador;
 		this.logger = logger;
 		this.puntaje = 0;
+		Random random = new Random();
+		float r = random.nextFloat();
+		float g = random.nextFloat();
+		float b = random.nextFloat();
+		this.color = new Color(r,g,b);
 	}
 	
 	public int getPuntaje(){
@@ -99,20 +109,20 @@ public class ManejoJugador implements Runnable, AccionesServidor {
 				break;
 			case 0: // movimiento regular
 				vibora.mover();
-				Juego.notificarNuevoMovimientoCabeza(vibora.getCabeza(),nombre,0);
+				Juego.notificarNuevoMovimientoCabeza(vibora.getCabeza(),nombre,0,color);
 				Juego.notificarNuevoMovimientoCola(vibora.getCola(),nombre);
 				vibora.borrarCola();
 				break;
 			case -1 :// come manzana para crecer
 				vibora.mover();
 				puntaje ++;
-				Juego.notificarNuevoMovimientoCabeza(vibora.getCabeza(), nombre,1);
+				Juego.notificarNuevoMovimientoCabeza(vibora.getCabeza(), nombre,1,color);
 				Juego.removerFruta(vibora.getCabeza(), -1);
 				break;
 			case -2 :// come manzana azul para crecer y velocidad
 				vibora.mover();
 				puntaje ++;
-				Juego.notificarNuevoMovimientoCabeza(vibora.getCabeza(), nombre,1);
+				Juego.notificarNuevoMovimientoCabeza(vibora.getCabeza(), nombre,1,color);
 				Juego.removerFruta(vibora.getCabeza(), -2);
 				Juego.cambiarVelocidad();
 				break;
@@ -121,8 +131,8 @@ public class ManejoJugador implements Runnable, AccionesServidor {
 	}
 
 	@Override
-	public void enviarMovimientoCabeza(Punto cabeza,String nombre, Integer puntaje) {
-		salidaServidor.enviarMovimientoCabeza(cabeza, nombre, puntaje);
+	public void enviarMovimientoCabeza(Punto cabeza,String nombre, Integer puntaje,Color color) {
+		salidaServidor.enviarMovimientoCabeza(cabeza, nombre, puntaje,color);
 	}
 	
 	@Override
@@ -161,10 +171,10 @@ public class ManejoJugador implements Runnable, AccionesServidor {
 		Juego.aparicionVibora(vibora.getCuerpo());
 
 		for (ManejoJugador handle : Juego.getTodasLasViboras()) {
-			salidaServidor.enviarVibora(handle.nombre, handle.getCuerpoVibora());
+			salidaServidor.enviarVibora(handle.nombre, handle.getCuerpoVibora(),color);
 		}
 		
-		Juego.notificarNuevaVibora(vibora.getCuerpo(),nombre);
+		Juego.notificarNuevaVibora(vibora.getCuerpo(),nombre,color);
 		
 		ArrayList<Punto> appleListCopy = new ArrayList<>(Juego.getTodasLasFrutas());
 
@@ -175,9 +185,9 @@ public class ManejoJugador implements Runnable, AccionesServidor {
 	}
 
 	@Override
-	public void dibujarVibora(Collection<Punto> cuerpo,String nombre) {
+	public void dibujarVibora(Collection<Punto> cuerpo,String nombre,Color color) {
 		if(this.nombre.equals(nombre)) return;
-			salidaServidor.crearVibora(cuerpo,nombre);
+			salidaServidor.crearVibora(cuerpo,nombre,color);
 	}
 
 
