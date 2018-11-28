@@ -3,10 +3,12 @@ package juego;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Map;
 import java.util.TreeMap;
 
 import entidades.Fruta;
 import entidades.Vibora;
+import jugador.Jugador;
 import jugador.ManejoJugador;
 import utilidades.Punto;
 
@@ -47,11 +49,13 @@ public class Juego {
 		notificarCambioJugador();
 	}
 	
-	public static synchronized TreeMap<String, Integer> getNombreJugadores(){
-		TreeMap<String, Integer> jugadores = new TreeMap<String, Integer>();
-		listaJugadores.values().forEach(c-> jugadores.put(c.getNombre(), c.getPuntaje()));
-		
-		
+	public static synchronized ArrayList<Jugador> getNombreJugadores(){
+		ArrayList<Jugador> jugadores = new ArrayList();
+		for(Map.Entry<String, ManejoJugador> entry : listaJugadores.entrySet()) {
+			String key = entry.getKey();
+			ManejoJugador m = entry.getValue();
+			jugadores.add(new Jugador(m.getNombre(), m.getPuntaje(),m.getColor()));
+		}		
 		return jugadores;
 	}
 	
@@ -161,6 +165,12 @@ public class Juego {
 	public static void cambiarVelocidad() {
 		tickle.setTiempo(10);
 		
+	}
+	
+	public static synchronized Color getColorJugador(String nombre) {
+		Color color = Color.BLACK;
+		color = listaJugadores.get(nombre).getColor();
+		return color;
 	}
 	
 }

@@ -4,10 +4,12 @@ import java.awt.Color;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Map;
 import java.util.TreeMap;
 
+import jugador.Jugador;
 import utilidades.Punto;
 
 
@@ -34,11 +36,12 @@ public class SalidaServidor implements AccionesServidor {
 
 
 	@Override
-	public void enviarListaJugadores(TreeMap<String,Integer> listaJugadores){
+	public void enviarListaJugadores(ArrayList<Jugador> listaJugadores){
 		os.println("LISTA JUGADORES");
-		for(Map.Entry<String, Integer> entry : listaJugadores.entrySet()){
-			os.println(entry.getKey());
-			os.println(entry.getValue().toString());
+		for (Jugador jugador : listaJugadores) {
+			os.println(jugador.getNombre());
+			os.println(jugador.getPuntaje());
+			os.println(Integer.toString(jugador.getColor().getRGB()));
 		}
 		os.println(".");
 	}

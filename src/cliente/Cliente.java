@@ -43,6 +43,7 @@ public class Cliente extends JFrame{
 	private String direccionConectado;
 	private String nombre="" ;
 	private ConexionCliente conexion;
+	private static ArrayList<Jugador> jugadoresOnline;
 
 	private JPanel comienzoPanel;
 	private JPanel pantalla;
@@ -56,7 +57,7 @@ public class Cliente extends JFrame{
 	private JTextField direccionField;
 	private JLabel direccionLabel;
 	
-	
+	private static Color color;
 	
 
 	public Cliente(String nombreUsuario) {
@@ -207,6 +208,7 @@ public class Cliente extends JFrame{
 	}
 
 	public void llenarListaJugadores( ArrayList<Jugador> puntajeJugadores){
+		jugadoresOnline = puntajeJugadores;
 		listaJugadores.setCellRenderer(new Pintar());
 		Collection<String> salida = new ArrayList<>();
 		for(Jugador entry : puntajeJugadores){
@@ -264,7 +266,11 @@ public class Cliente extends JFrame{
     private static class Pintar extends DefaultListCellRenderer {
         public Component getListCellRendererComponent( JList list, Object value, int index, boolean isSelected, boolean cellHasFocus ) {
             Component c = super.getListCellRendererComponent( list, value, index, isSelected, cellHasFocus );
-	        	c.setForeground( Color.yellow );
+            String cadena= (String)value;
+            for(int i = 0;i<jugadoresOnline.size();i++) {
+            	if (cadena.contains(jugadoresOnline.get(i).getNombre()))
+    	        	c.setForeground(jugadoresOnline.get(i).getColor());
+            }
             return c;
         }
     }

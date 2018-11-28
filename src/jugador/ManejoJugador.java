@@ -242,6 +242,10 @@ public class ManejoJugador implements Runnable, AccionesServidor {
 		salidaServidor.enviarPuntaje(nombre, puntaje);
 	}
 
+	public Color getColor() {
+		return this.color;
+	}
+
 
 	
 

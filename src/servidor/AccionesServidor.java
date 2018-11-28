@@ -1,9 +1,10 @@
 package servidor;
 
 import java.awt.Color;
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.TreeMap;
 
+import jugador.Jugador;
 import jugador.ManejoJugador;
 import utilidades.Punto;
 
@@ -11,7 +12,7 @@ public interface AccionesServidor {
 	default public void recibirNombre(String nombre){}
 	public void nombreOK();
 	public void nombreMal();
-	default public void enviarListaJugadores(TreeMap<String, Integer> listaJugadores){}
+	default public void enviarListaJugadores(ArrayList<Jugador> listaJugadores){}
 	default public void crearVibora(Collection<Punto> cuerpo,String nombre,Color color){ }
 	default public void listaJugadores(){}
 	default public void cambioListaJugadores(){}

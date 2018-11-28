@@ -45,7 +45,8 @@ public class EntradaCliente {
 					String x1;
 					while(!(x1 = b.readLine()).equals(".")){
 						puntaje = Integer.valueOf(b.readLine());
-						listaJugadores.add(new Jugador(x1,puntaje));
+						color = new Color(Integer.parseInt(b.readLine()));
+						listaJugadores.add(new Jugador(x1,puntaje,color));
 					}
 					accionesCliente.enviarListaJugadores(listaJugadores);
 					break;

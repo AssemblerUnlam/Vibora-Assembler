@@ -1,12 +1,16 @@
 package jugador;
 
+import java.awt.Color;
+
 public class Jugador implements Comparable<Jugador> {
 	Integer puntaje = 0 ;
 	String nombre ="";
+	Color color;
 	
-	public Jugador(String nombre, Integer puntaje) {
+	public Jugador(String nombre, Integer puntaje, Color color) {
 		this.nombre = nombre;
 		this.puntaje = puntaje;
+		this.color = color;
 	}
 	
 	public void incrementarPuntaje(Integer inc){
@@ -50,5 +54,9 @@ public class Jugador implements Comparable<Jugador> {
 		int tmp = compararPuntaje - this.puntaje;
 		if(tmp == 0) return 1;
 		return tmp;
+	}
+	
+	public Color getColor() {
+		return this.color;
 	}
 }
