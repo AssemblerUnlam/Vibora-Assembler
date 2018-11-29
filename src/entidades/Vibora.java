@@ -88,7 +88,12 @@ public class Vibora {
 		viva = false;
 	}
 	
-
+	public boolean isViva() {
+		return viva;
+	}
 	
+	public void setCuerpo(List<Punto> cuerpo) {
+		this.cuerpo = cuerpo;
+	}
 	
 }
