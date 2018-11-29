@@ -7,6 +7,8 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import hibernate.Hibernate;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
@@ -37,7 +39,7 @@ public class MenuLogin extends JDialog {
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
-		
+
 		textUsuario = new JTextField();
 		textUsuario.addMouseListener(new MouseAdapter() {
 			@Override
@@ -66,12 +68,12 @@ public class MenuLogin extends JDialog {
 			lblContraseña.setBounds(30, 100, 90, 20);
 			contentPanel.add(lblContraseña);
 		}
-		
+
 		passContraseña = new JPasswordField();
 		passContraseña.setBounds(140, 100, 120, 20);
 		contentPanel.add(passContraseña);
 		{
-			
+
 			{
 				JButton okButton = new JButton("Jugar");
 				okButton.setBounds(30, 160, 100, 50);
@@ -80,16 +82,17 @@ public class MenuLogin extends JDialog {
 					public void actionPerformed(ActionEvent e) {
 						MenuSala menuSala;
 						menuSala = new MenuSala(textUsuario.getText());
-						menuSala.setVisible(true);
-						//Cliente cliente = new Cliente(textUsuario.getText());
-						
-						//if(conectar.iniciarSesion(textUsuario.getText(), String.valueOf(passContraseña.getPassword())))
-							//dispose();
+
+						Hibernate conectar = new Hibernate();
+						if (conectar.iniciarSesion(textUsuario.getText(),
+								String.valueOf(passContraseña.getPassword()))) {
+							dispose();
+							menuSala.setVisible(true);
+						}
 					}
 				});
 			}
-			
-			
+
 			{
 				JButton cancelButton = new JButton("Volver");
 				cancelButton.setBounds(160, 160, 100, 50);

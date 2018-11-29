@@ -7,7 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import audio.Sonido;
-import utilidades.Conexion;
+import hibernate.Hibernate;
 
 import javax.swing.JTextField;
 import java.awt.event.KeyAdapter;
@@ -81,14 +81,10 @@ public class MenuRegistro extends JDialog {
 			contentPanel.add(okButton);
 			okButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					Conexion conectar = new Conexion();
+					Hibernate conectar = new Hibernate();
 
-					try {
-						if (conectar.registrar(textUsuario.getText(), String.valueOf(passContraseña.getPassword())))
-							dispose();
-					} catch (ClassNotFoundException | SQLException e) {
-						e.printStackTrace();
-					}
+					if (conectar.registrar(textUsuario.getText(), String.valueOf(passContraseña.getPassword())))
+						dispose();
 				}
 			});
 			okButton.setActionCommand("OK");

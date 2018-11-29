@@ -7,7 +7,6 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import audio.Sonido;
-import utilidades.Conexion;
 
 import javax.imageio.ImageIO;
 import javax.sound.sampled.AudioSystem;
@@ -43,7 +42,7 @@ public class MenuInicio extends JFrame {
 					frame.setLocation(dim.width / 2 - frame.getWidth() / 2, dim.height / 2 - frame.getHeight() / 2);
 					frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 					frame.setVisible(true);
-					
+
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -53,13 +52,15 @@ public class MenuInicio extends JFrame {
 
 	/**
 	 * Create the frame.
-	 * @throws SQLException 
-	 * @throws ClassNotFoundException 
-	 * @throws LineUnavailableException 
-	 * @throws UnsupportedAudioFileException 
-	 * @throws IOException 
+	 * 
+	 * @throws SQLException
+	 * @throws ClassNotFoundException
+	 * @throws LineUnavailableException
+	 * @throws UnsupportedAudioFileException
+	 * @throws IOException
 	 */
-	public MenuInicio() throws ClassNotFoundException, SQLException, LineUnavailableException, IOException, UnsupportedAudioFileException {
+	public MenuInicio() throws ClassNotFoundException, SQLException, LineUnavailableException, IOException,
+			UnsupportedAudioFileException {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 350);
@@ -68,13 +69,12 @@ public class MenuInicio extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		Conexion.crearBase();
-		
+
 		Clip sonido = AudioSystem.getClip();
-        File a = new File("megaman_stage_start.wav");
-        sonido.open(AudioSystem.getAudioInputStream(a));
-        sonido.start();
-        
+		File a = new File("megaman_stage_start.wav");
+		sonido.open(AudioSystem.getAudioInputStream(a));
+		sonido.start();
+
 		JButton btnJugar = new JButton("Jugar");
 		btnJugar.setBackground(Color.YELLOW);
 		btnJugar.addActionListener(new ActionListener() {
@@ -83,21 +83,20 @@ public class MenuInicio extends JFrame {
 					MenuJugar menuJugar = new MenuJugar();
 					menuJugar.setVisible(true);
 				} catch (ClassNotFoundException | SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				
+
 				Sonido sonido = new Sonido();
 				File a = new File("megaman-x-select.wav");
 				sonido.abrir(a);
 				sonido.reproducir();
-//				Cliente cliente = new Cliente();
-//				dispose();
+
+				dispose();
 			}
 		});
 		btnJugar.setBounds(300, 350, 200, 50);
 		contentPane.add(btnJugar);
-		
+
 		JButton btnSalir = new JButton("Salir");
 		btnSalir.setBackground(Color.YELLOW);
 		btnSalir.setForeground(Color.BLACK);
@@ -112,7 +111,7 @@ public class MenuInicio extends JFrame {
 		});
 		btnSalir.setBounds(300, 450, 200, 50);
 		contentPane.add(btnSalir);
-		
+
 		JLabel lblSnakeTheGame = new JLabel("SNAKE THE GAME");
 		lblSnakeTheGame.setBackground(Color.GREEN);
 		lblSnakeTheGame.setFont(new Font("Comic Sans MS", Font.ITALIC, 48));
@@ -120,7 +119,7 @@ public class MenuInicio extends JFrame {
 		lblSnakeTheGame.setBounds(180, 200, 600, 100);
 		contentPane.add(lblSnakeTheGame);
 	}
-	
+
 	public void paint(Graphics gra) {
 		super.paint(gra);
 		try {
@@ -131,26 +130,26 @@ public class MenuInicio extends JFrame {
 		}
 		gra.setColor(Color.GREEN);
 		int y = 30;
-		for(int i = 0; i < 15; i++) {
+		for (int i = 0; i < 15; i++) {
 			gra.fillOval(20, y, 25, 25);
 			y += 45;
 		}
 		y = 60;
-		for(int i = 0; i < 18; i++) {
+		for (int i = 0; i < 18; i++) {
 			gra.fillOval(y, 30, 25, 25);
 			y += 40;
 		}
 		y = 30;
-		for(int i = 0; i < 18; i++) {
+		for (int i = 0; i < 18; i++) {
 			gra.fillOval(740, y, 25, 25);
 			y += 45;
 		}
-		
+
 		y = 60;
-		for(int i = 0; i < 18; i++) {
+		for (int i = 0; i < 18; i++) {
 			gra.fillOval(y, 570, 25, 25);
 			y += 40;
 		}
 	}
-	
+
 }

@@ -7,7 +7,6 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import audio.Sonido;
-import utilidades.Conexion;
 
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
@@ -64,7 +63,6 @@ public class MenuJugar extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		Conexion.crearBase();
 		
 		JButton btnRegistro = new JButton("Registrarse");
 		btnRegistro.setBackground(Color.YELLOW);
