@@ -10,6 +10,7 @@ import entidades.Fruta;
 import entidades.Vibora;
 import jugador.Jugador;
 import jugador.ManejoJugador;
+import servidor.Servidor;
 import utilidades.Punto;
 
 
@@ -98,6 +99,8 @@ public class Juego {
 		listaJugadores.remove(nombre);
 		notificarCambioJugador();
 		copiaListaJugadores = new TreeMap<>(listaJugadores);
+	//***
+		Servidor.quitarJugador();
 	}
 
 	private static synchronized void notificarEliminarJugador(ManejoJugador manejoJugador) {

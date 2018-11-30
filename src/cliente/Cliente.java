@@ -57,12 +57,12 @@ public class Cliente extends JFrame{
 	private JTextField direccionField;
 	private JLabel direccionLabel;
 	
-	private static Color color;
+//	private static Color color;
 	
 
 	public Cliente(String nombreUsuario) {
 		puerto = 1234;
-		direccionConectado = "127.0.0.1";
+		direccionConectado = "127.0.0.1";	
 		nombre = nombreUsuario;
 		conectado = false;
 		iniciar();
@@ -71,6 +71,7 @@ public class Cliente extends JFrame{
 	private void conectar(){
 		if(conectado) return;
 		try {
+		
 			socket = new Socket(direccionConectado, puerto);
 			conexion = new ConexionCliente(socket, this);
 		} catch (IOException e) {
@@ -78,6 +79,7 @@ public class Cliente extends JFrame{
 			
 		}
 		conectado = true;
+		
 		conexion.start();
 
 		conexion.enviarNombre(nombre);
@@ -85,7 +87,6 @@ public class Cliente extends JFrame{
 
 
 	private void iniciar(){
-
 
 		comienzoPanel = new JPanel(new GridBagLayout() );
 		pantalla = new JPanel(new BorderLayout() );
@@ -97,7 +98,8 @@ public class Cliente extends JFrame{
 
 		
 		nombreField = new JTextField(5);
-		botonAceptar = new JButton("Conectar");
+//		botonAceptar = new JButton("Conectar");
+		botonAceptar = new JButton("Comenzar JUEGO");		
 
 		pantallaJuego.addKeyListener( 
 				new KeyListener() {
@@ -105,13 +107,11 @@ public class Cliente extends JFrame{
 					@Override
 					public void keyTyped(KeyEvent e) {
 						// TODO Auto-generated method stub
-
 					}
 
 					@Override
 					public void keyReleased(KeyEvent e) {
 						// TODO Auto-generated method stub
-
 					}
 
 					@Override
@@ -124,9 +124,12 @@ public class Cliente extends JFrame{
 				}
 				);
 		
-		direccionField = new JTextField("127.0.0.1");
+		direccionField = new JTextField("127.0.0.1"); //IP Servidor
 		direccionField.setPreferredSize(new Dimension(90, 20));
-
+		direccionField.setEditable(false); //Lo mostramos grisado
+		
+//		botonAceptar.setEnabled(false);//El boton COMENZAR aparece grisado hasta que haya jugadores suficientes
+		
 		botonAceptar.addActionListener( l->{
 			this.nombre = nombreField.getText();
 			setContentPane(pantalla);
@@ -135,7 +138,6 @@ public class Cliente extends JFrame{
 			
 			this.direccionConectado = direccionField.getText();
 			conectar();
-
 
 		});
 		
@@ -169,18 +171,18 @@ public class Cliente extends JFrame{
 		pantalla.add(listaJugadoresPane,BorderLayout.EAST);
 
 		nombreField.setText(this.nombre);
+		//***
+		nombreField.setEditable(false);
 		nombreField.addKeyListener(new KeyListener() {
 			
 			@Override
 			public void keyTyped(KeyEvent e) {
-				
 				
 			}
 			
 			@Override
 			public void keyReleased(KeyEvent e) {
 				// TODO Auto-generated method stub
-				
 			}
 			
 			@Override
@@ -263,8 +265,9 @@ public class Cliente extends JFrame{
 		setContentPane(comienzoPanel);
 	}
 	
-    private static class Pintar extends DefaultListCellRenderer {
-        public Component getListCellRendererComponent( JList list, Object value, int index, boolean isSelected, boolean cellHasFocus ) {
+    @SuppressWarnings("serial")
+	private static class Pintar extends DefaultListCellRenderer {
+        public Component getListCellRendererComponent( @SuppressWarnings("rawtypes") JList list, Object value, int index, boolean isSelected, boolean cellHasFocus ) {
             Component c = super.getListCellRendererComponent( list, value, index, isSelected, cellHasFocus );
             String cadena= (String)value;
             for(int i = 0;i<jugadoresOnline.size();i++) {

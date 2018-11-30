@@ -1,7 +1,5 @@
 package frames;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -33,22 +31,17 @@ public class MenuInicio extends JFrame {
 
 	private JPanel contentPane;
 
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					MenuInicio frame = new MenuInicio();
-					Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-					frame.setSize(800, 600);
-					frame.setLocation(dim.width / 2 - frame.getWidth() / 2, dim.height / 2 - frame.getHeight() / 2);
-					frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-					frame.setVisible(true);
-					
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+	public static void main(String[] args) throws ClassNotFoundException, SQLException, LineUnavailableException, IOException, UnsupportedAudioFileException {
+		cargarInterfaz();
+	}
+
+	public static void cargarInterfaz() throws ClassNotFoundException, SQLException, LineUnavailableException, IOException, UnsupportedAudioFileException {
+			MenuInicio frame = new MenuInicio();
+			Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+			frame.setSize(800, 600);
+			frame.setLocation(dim.width / 2 - frame.getWidth() / 2, dim.height / 2 - frame.getHeight() / 2);
+			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			frame.setVisible(true);
 	}
 
 	/**
@@ -83,7 +76,6 @@ public class MenuInicio extends JFrame {
 					MenuJugar menuJugar = new MenuJugar();
 					menuJugar.setVisible(true);
 				} catch (ClassNotFoundException | SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				
@@ -91,8 +83,6 @@ public class MenuInicio extends JFrame {
 				File a = new File("megaman-x-select.wav");
 				sonido.abrir(a);
 				sonido.reproducir();
-//				Cliente cliente = new Cliente();
-//				dispose();
 			}
 		});
 		btnJugar.setBounds(300, 350, 200, 50);

@@ -7,6 +7,8 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import cliente.Cliente;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
@@ -78,13 +80,7 @@ public class MenuLogin extends JDialog {
 				contentPanel.add(okButton);
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						MenuSala menuSala;
-						menuSala = new MenuSala(textUsuario.getText());
-						menuSala.setVisible(true);
-						//Cliente cliente = new Cliente(textUsuario.getText());
-						
-						//if(conectar.iniciarSesion(textUsuario.getText(), String.valueOf(passContraseña.getPassword())))
-							//dispose();
+						new Cliente(textUsuario.getText());
 					}
 				});
 			}

@@ -9,6 +9,8 @@ import java.awt.event.WindowEvent;import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
+import java.util.PriorityQueue;
+import java.util.Queue;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -33,6 +35,9 @@ public class Servidor extends Thread {
 	private final static int ALTO = 640;
 	private final static int ALTO_LOG = 520;
 	private final static int ANCHO_LOG = ANCHO - 25;
+	//**
+	private static int cantJugadoresConectados;
+	private Queue<ManejoJugador> colaEnEspera = new PriorityQueue<ManejoJugador>();
 	
 	public void run() {
 		try{
@@ -42,13 +47,25 @@ public class Servidor extends Thread {
 			servidor = new ServerSocket(puerto);
 			log.append("Esperando conexiones..." + System.lineSeparator());
 			servidor.setSoTimeout(1000);
-			Juego.iniciarMapa();
+
 			while(!detener){
 				try{
 					Socket socketJugador = servidor.accept();
 					log.append("el cliente : " + socketJugador.getInetAddress().getHostAddress() + " se ha conectado" + System.lineSeparator());
 					logger.jugadorConectado(socketJugador.toString());
-					new Thread(new ManejoJugador(socketJugador, logger)).start();
+			//***
+					cantJugadoresConectados++;
+					if(cantJugadoresConectados<2) {
+						this.colaEnEspera.add(new ManejoJugador(socketJugador, logger));
+					}
+					else {
+						Juego.iniciarMapa();						
+						new Thread(new ManejoJugador(socketJugador, logger)).start();
+						while(!this.colaEnEspera.isEmpty()) {
+							new Thread(this.colaEnEspera.poll()).start();
+						}
+					}
+			//***
 				}catch(SocketTimeoutException ex){
 				}
 			}
@@ -146,4 +163,9 @@ public class Servidor extends Thread {
 	public static void setLog(final JTextArea log) {
 		Servidor.log = log;
 	}
+//***
+ 	public static void quitarJugador() {
+ 		cantJugadoresConectados--;
+ 	}
+//***
 }
