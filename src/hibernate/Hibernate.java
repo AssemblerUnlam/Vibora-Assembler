@@ -10,10 +10,12 @@ import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import audio.Sonido;
 
+
 public class Hibernate {
 
+	
 	public Session conectarConBase() {
-
+		
 		Configuration cfg = new Configuration();
 		cfg.configure("hibernate.cfg.xml");
 		SessionFactory factory = cfg.buildSessionFactory();
@@ -93,31 +95,44 @@ public class Hibernate {
 
 		Session session = conectarConBase();
 		Transaction tx = session.beginTransaction();
-		Jugador jugador = new Jugador();
-		
 
 		try {
 
-			Query q = session.createQuery("update j.usuario from Jugador j");
-			List<String> listaDeUsuarios = q.getResultList();
-			
-			q = session.createQuery("select j.puntaje from Jugador j");
+			Query q = session.createQuery("select j.puntaje from Jugador j where j.usuario = :u ");
+			q.setParameter("u", usuario);
 			List<Integer> listaDePuntajes = q.getResultList();
 
-			for (int i = 0; i < listaDeUsuarios.size(); i++) {
-				if (usuario.equals(listaDeUsuarios.get(i)))
-					if(puntaje > listaDePuntajes.get(i)) {
-						jugador.setPuntaje(puntaje);
-						session.save(jugador);
-						tx.commit();
-						return true;
-				}
+			if (puntaje > listaDePuntajes.get(0)) {
+				q = session.createQuery("update Jugador set puntaje = :p where usuario = :u");
+				q.setParameter("p", puntaje);
+				q.setParameter("u", usuario);
+				q.executeUpdate();
+				tx.commit();
+				return true;
+
+			} else {
+				tx.rollback();
+				return false;
 			}
 
 		} finally {
 			session.close();
 		}
-		return false;
+	}
+
+	@SuppressWarnings("unchecked")
+	public Jugador maximoPuntaje() {
+
+		Session session = conectarConBase();
+
+		try {
+			Query q = session.createQuery("select usuario, MAX(puntaje) from Jugador");
+			List<Jugador> listaDePuntajes = q.getResultList();
+			return listaDePuntajes.get(0);
+
+		} finally {
+			session.close();
+		}
 
 	}
 }
