@@ -64,7 +64,7 @@ public class MenuInicio extends JFrame {
 		Conexion.crearBase();
 		
 		Clip sonido = AudioSystem.getClip();
-        File a = new File("megaman_stage_start.wav");
+        File a = new File("utilidades/megaman_stage_start.wav");
         sonido.open(AudioSystem.getAudioInputStream(a));
         sonido.start();
         
@@ -80,7 +80,7 @@ public class MenuInicio extends JFrame {
 				}
 				
 				Sonido sonido = new Sonido();
-				File a = new File("megaman-x-select.wav");
+				File a = new File("utilidades/megaman-x-select.wav");
 				sonido.abrir(a);
 				sonido.reproducir();
 			}
@@ -95,7 +95,7 @@ public class MenuInicio extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();
 				Sonido sonido = new Sonido();
-				File a = new File("megaman-x-select.wav");
+				File a = new File("utilidades/megaman-x-select.wav");
 				sonido.abrir(a);
 				sonido.reproducir();
 			}
@@ -114,7 +114,7 @@ public class MenuInicio extends JFrame {
 	public void paint(Graphics gra) {
 		super.paint(gra);
 		try {
-			BufferedImage fondo = ImageIO.read(new File("descarga.jpg"));
+			BufferedImage fondo = ImageIO.read(new File("utilidades/descarga.jpg"));
 			gra.drawImage(fondo, 265, 50, this);
 		} catch (IOException e) {
 			e.printStackTrace();

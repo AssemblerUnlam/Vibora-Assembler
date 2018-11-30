@@ -62,7 +62,7 @@ public class Conexion {
 			ps.execute();
 			desconectar();
 			Sonido sonido = new Sonido();
-			File a = new File("mario-bros_vida.wav");
+			File a = new File("utilidades/mario-bros_vida.wav");
 			sonido.abrir(a);
 			sonido.reproducir();
 			JOptionPane.showMessageDialog(null, "¡Bienvenido " + usuario + " a Snake The GAME!", "Bienvenido", 1);

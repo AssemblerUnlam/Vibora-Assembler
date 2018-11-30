@@ -102,7 +102,7 @@ public class MenuRegistro extends JDialog {
 			cancelButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					Sonido sonido = new Sonido();
-					File a = new File("megaman-x-select.wav");
+					File a = new File("utilidades/megaman-x-select.wav");
 					sonido.abrir(a);
 					sonido.reproducir();
 					dispose();

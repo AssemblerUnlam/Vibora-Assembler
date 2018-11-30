@@ -48,7 +48,7 @@ public class MenuJugar extends JFrame {
 				MenuRegistro ventanaRegistro = new MenuRegistro();
 				ventanaRegistro.setVisible(true);
 				Sonido sonido = new Sonido();
-				File a = new File("megaman-x-select.wav");
+				File a = new File("utilidades/megaman-x-select.wav");
 				sonido.abrir(a);
 				sonido.reproducir();
 			}
@@ -64,7 +64,7 @@ public class MenuJugar extends JFrame {
 				MenuLogin ventanaLogin = new MenuLogin();
 				ventanaLogin.setVisible(true);
 				Sonido sonido = new Sonido();
-				File a = new File("megaman-x-select.wav");
+				File a = new File("utilidades/megaman-x-select.wav");
 				sonido.abrir(a);
 				sonido.reproducir();
 			}
@@ -83,7 +83,7 @@ public class MenuJugar extends JFrame {
 	public void paint(Graphics gra) {
 		super.paint(gra);
 		try {
-			BufferedImage fondo = ImageIO.read(new File("descarga.jpg"));
+			BufferedImage fondo = ImageIO.read(new File("utilidades/descarga.jpg"));
 			gra.drawImage(fondo, 265, 50, this);
 		} catch (IOException e) {
 			e.printStackTrace();

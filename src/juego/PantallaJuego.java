@@ -56,7 +56,7 @@ public class PantallaJuego extends JComponent {
 		
 		
 		try {
-			fondo = ImageIO.read(new File("src/fond.jpg"));
+			fondo = ImageIO.read(new File("utilidades/fondo.jpg"));
 			
 		} catch (IOException e) {
 			e.printStackTrace();
