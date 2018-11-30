@@ -18,6 +18,7 @@ import utilidades.Direccion;
 import utilidades.Punto;
 
 
+@SuppressWarnings("unused")
 public class ManejoJugador implements Runnable, AccionesServidor {
 	private final Socket socketJugador;
 	private SalidaServidor salidaServidor;

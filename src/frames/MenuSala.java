@@ -48,13 +48,13 @@ public class MenuSala extends JDialog {
 		contentPanel.add(botonUnirse);
 		botonUnirse.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Cliente cliente = new Cliente(nombreUsuario);
+				new Cliente(nombreUsuario);
 			}
 		});
 		botonUnirse.setEnabled(false);
 		
-		DefaultListModel model = new DefaultListModel();
-		JList lista = new JList();
+		DefaultListModel<String> model = new DefaultListModel<String>();
+		JList<String> lista = new JList<String>();
 		lista.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent arg0) {
 				botonUnirse.setEnabled(true);

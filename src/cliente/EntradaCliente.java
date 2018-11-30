@@ -42,11 +42,11 @@ public class EntradaCliente {
 					break;
 				case "LISTA JUGADORES":
 					listaJugadores = new ArrayList<>();
-					String x1;
-					while(!(x1 = b.readLine()).equals(".")){
+//					String x1;
+					while(!(x = b.readLine()).equals(".")){
 						puntaje = Integer.valueOf(b.readLine());
 						color = new Color(Integer.parseInt(b.readLine()));
-						listaJugadores.add(new Jugador(x1,puntaje,color));
+						listaJugadores.add(new Jugador(x,puntaje,color));
 					}
 					accionesCliente.enviarListaJugadores(listaJugadores);
 					break;
@@ -54,10 +54,18 @@ public class EntradaCliente {
 					cuerpo = new ArrayList<>();
 					nombre = b.readLine();
 					color = new Color(Integer.parseInt(b.readLine()));
-					while(!(x1 = b.readLine()).equals(".")){
+					while(!(x = b.readLine()).equals(".")){
 						y = b.readLine();
 						
-						Punto p = new Punto(Integer.valueOf(x1), Integer.valueOf(y));
+//PRUEBA para salvar la excepcion ***NumberFormatException***
+						Punto p;
+						if(x == null || x.isEmpty())
+							p = new Punto(0,0); // Coordenadas, OK?
+						else
+							p = new Punto(Integer.valueOf(x), Integer.valueOf(y));
+//						
+//						Punto p = new Punto(Integer.valueOf(x), Integer.valueOf(y));
+// **********************************************************
 						cuerpo.add(p);
 						
 					}
@@ -67,35 +75,42 @@ public class EntradaCliente {
 					cuerpo = new ArrayList<>();
 					nombre = b.readLine();
 					color = new Color(Integer.parseInt(b.readLine()));
-					while(!(x1 = b.readLine()).equals(".")){
+					while(!(x = b.readLine()).equals(".")){
 						y = b.readLine();
-						
-						Punto p = new Punto(Integer.valueOf(x1), Integer.valueOf(y));
+//PRUEBA para salvar la excepcion ***NumberFormatException***
+						Punto p;
+						if(x == null || x.isEmpty())
+							p = new Punto(0,0); // Coordenadas, OK?
+						else
+							p = new Punto(Integer.valueOf(x), Integer.valueOf(y));
+//						
+//						Punto p = new Punto(Integer.valueOf(x), Integer.valueOf(y));
+// **********************************************************
 						cuerpo.add(p);
 					}
 					accionesCliente.iniciarVibora(cuerpo,nombre,color);
 					break;
 				case "MOVER CABEZA":
 					nombre = b.readLine();
-					x1=b.readLine();
+					x=b.readLine();
 					y=b.readLine();
 					puntaje = Integer.valueOf(b.readLine());
 					String col = b.readLine();
 					color = new Color(Integer.parseInt(col));
-					accionesCliente.dibujarMovimientoCabeza(new Punto(Integer.valueOf(x1), Integer.valueOf(y)),nombre,color);
+					accionesCliente.dibujarMovimientoCabeza(new Punto(Integer.valueOf(x), Integer.valueOf(y)),nombre,color);
 					if(puntaje != 0)  accionesCliente.reclasificar(nombre,puntaje); 
 					break;
 				case "MOVER COLA":
-					x1=b.readLine();
+					x=b.readLine();
 					y=b.readLine();
-					accionesCliente.dibujarMovimientoCola(new Punto(Integer.valueOf(x1), Integer.valueOf(y)));
+					accionesCliente.dibujarMovimientoCola(new Punto(Integer.valueOf(x), Integer.valueOf(y)));
 					break;
 				case "LIMPIAR":
 					cuerpo = new ArrayList<>();
-					while(!(x1 = b.readLine()).equals(".")){
+					while(!(x = b.readLine()).equals(".")){
 						y = b.readLine();
 						
-						Punto p = new Punto(Integer.valueOf(x1), Integer.valueOf(y));
+						Punto p = new Punto(Integer.valueOf(x), Integer.valueOf(y));
 						cuerpo.add(p);
 					}
 					accionesCliente.borrarVibora(cuerpo);
@@ -110,17 +125,17 @@ public class EntradaCliente {
 					detener = true;
 					break;
 				case "NUEVA FRUTA":
-					x1=b.readLine();
+					x=b.readLine();
 					y=b.readLine();
-					accionesCliente.dibujarFruta(new Punto(Integer.valueOf(x1), Integer.valueOf(y)));
+					accionesCliente.dibujarFruta(new Punto(Integer.valueOf(x), Integer.valueOf(y)));
 					break;
 				case "VELOCIDAD FRUTA":
-					x1=b.readLine();
+					x=b.readLine();
 					y=b.readLine();
-					accionesCliente.dibujarVelocidadFruta(new Punto(Integer.valueOf(x1), Integer.valueOf(y)));
+					accionesCliente.dibujarVelocidadFruta(new Punto(Integer.valueOf(x), Integer.valueOf(y)));
 					break;
 				default:
-					throw new MyProtocolException("Invalid input on client: " + linea);
+					throw new MyProtocolException("Entrada inválida en el cliente: " + linea);
 				}
 			}
 		}

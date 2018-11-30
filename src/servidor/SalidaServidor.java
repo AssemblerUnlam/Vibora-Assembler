@@ -14,6 +14,7 @@ import utilidades.Punto;
 
 
 
+@SuppressWarnings("unused")
 public class SalidaServidor implements AccionesServidor {
 	PrintWriter os;
 	

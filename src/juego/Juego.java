@@ -10,7 +10,6 @@ import entidades.Fruta;
 import entidades.Vibora;
 import jugador.Jugador;
 import jugador.ManejoJugador;
-import servidor.Servidor;
 import utilidades.Punto;
 
 
@@ -51,9 +50,9 @@ public class Juego {
 	}
 	
 	public static synchronized ArrayList<Jugador> getNombreJugadores(){
-		ArrayList<Jugador> jugadores = new ArrayList();
+		ArrayList<Jugador> jugadores = new ArrayList<Jugador>();
 		for(Map.Entry<String, ManejoJugador> entry : listaJugadores.entrySet()) {
-			String key = entry.getKey();
+//			String key = entry.getKey();
 			ManejoJugador m = entry.getValue();
 			jugadores.add(new Jugador(m.getNombre(), m.getPuntaje(),m.getColor()));
 		}		
@@ -73,21 +72,18 @@ public class Juego {
 		return listaJugadores.values();
 	}
 	
-	public static synchronized void moverVibora(){
-		
+	public static synchronized void moverVibora(){		
 		copiaListaJugadores.values().forEach(c -> c.moverVibora());
 	}
 	
 	public static synchronized void notificarNuevoMovimientoCabeza(Punto cabeza,String nombre, int puntaje,Color color){
 		listaJugadores.values().forEach(c-> c.enviarMovimientoCabeza(cabeza, nombre,puntaje,color));
 		mapa[cabeza.getY()][cabeza.getX()] = 1;
-		
 	}
 
 	public static synchronized void notificarNuevoMovimientoCola(Punto cola,String nombre){
 		listaJugadores.values().forEach(c-> c.enviarMovimientoCola(cola));
 		mapa[cola.getY()][cola.getX()] = 0;
-		
 	}
 	
 	public static synchronized void moverUnicaVibora(String nombre){
@@ -99,8 +95,6 @@ public class Juego {
 		listaJugadores.remove(nombre);
 		notificarCambioJugador();
 		copiaListaJugadores = new TreeMap<>(listaJugadores);
-	//***
-		Servidor.quitarJugador();
 	}
 
 	private static synchronized void notificarEliminarJugador(ManejoJugador manejoJugador) {
@@ -177,5 +171,4 @@ public class Juego {
 	}
 	
 }
-	
 	

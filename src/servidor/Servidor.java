@@ -47,7 +47,7 @@ public class Servidor extends Thread {
 			servidor = new ServerSocket(puerto);
 			log.append("Esperando conexiones..." + System.lineSeparator());
 			servidor.setSoTimeout(1000);
-
+			
 			while(!detener){
 				try{
 					Socket socketJugador = servidor.accept();
@@ -59,7 +59,7 @@ public class Servidor extends Thread {
 						this.colaEnEspera.add(new ManejoJugador(socketJugador, logger));
 					}
 					else {
-						Juego.iniciarMapa();						
+						Juego.iniciarMapa();
 						new Thread(new ManejoJugador(socketJugador, logger)).start();
 						while(!this.colaEnEspera.isEmpty()) {
 							new Thread(this.colaEnEspera.poll()).start();
@@ -70,8 +70,7 @@ public class Servidor extends Thread {
 				}
 			}
 		} catch (IOException e) {
-		}
-		
+		}		
 	}
 	
 	public synchronized void finalizar(){
@@ -120,6 +119,7 @@ public class Servidor extends Thread {
 		botonDetener.setText("Detener");
 		botonDetener.setBounds(360, ALTO - 70, 100, 30);
 		botonDetener.addActionListener(new ActionListener() {
+			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
 				try {
 					server.stop();
@@ -137,6 +137,7 @@ public class Servidor extends Thread {
 
 		ventana.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		ventana.addWindowListener(new WindowAdapter() {
+			@SuppressWarnings("deprecation")
 			public void windowClosing(WindowEvent evt) {
 				if (servidor != null) {
 					try {
@@ -151,9 +152,7 @@ public class Servidor extends Thread {
 				System.exit(0);
 			}
 		});
-
 		ventana.setVisible(true);
-		
 	}
 	
 	public static JTextArea getLog() {
@@ -165,6 +164,7 @@ public class Servidor extends Thread {
 	}
 //***
  	public static void quitarJugador() {
+ 		System.out.println("SERVIDOR: Cant.Jugadores: "+cantJugadoresConectados);
  		cantJugadoresConectados--;
  	}
 //***
