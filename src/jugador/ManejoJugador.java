@@ -199,28 +199,24 @@ public class ManejoJugador implements Runnable, AccionesServidor {
 
 	@Override
 	public void cambiarDireccion(String dir) {
-		if(dir.equals("M")){
-			Juego.moverUnicaVibora(nombre);
-		}else{
-			Direccion d = null;
-			switch (dir){
-			case "38":
-				d=Direccion.ARRIBA;
-				break;
-			case "40":
-				d=Direccion.ABAJO;
-				break;
-			case "37":
-				d=Direccion.IZQUIERDA;
-				break;
-			case "39":
-				d=Direccion.DERECHA;
-				break;
-			default:
-			}
+		Direccion d = null;
+		switch (dir){
+		case "38":
+			d=Direccion.ARRIBA;
+			break;
+		case "40":
+			d=Direccion.ABAJO;
+			break;
+		case "37":
+			d=Direccion.IZQUIERDA;
+			break;
+		case "39":
+			d=Direccion.DERECHA;
+			break;
+		default:
+		}
 			vibora.setDireccion(d);
 			logger.direccionJugador(nombre, dir);
-		}
 	}
 
 	public Collection<Punto> getCuerpoVibora(){

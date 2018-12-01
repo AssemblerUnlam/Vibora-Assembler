@@ -85,10 +85,6 @@ public class Juego {
 		listaJugadores.values().forEach(c-> c.enviarMovimientoCola(cola));
 		mapa[cola.getY()][cola.getX()] = 0;
 	}
-	
-	public static synchronized void moverUnicaVibora(String nombre){
-		listaJugadores.get(nombre).moverVibora();
-	}
 
 	public static synchronized void eliminarJugador(String nombre) {
 		notificarEliminarJugador(listaJugadores.get(nombre));
