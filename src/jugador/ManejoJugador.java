@@ -1,12 +1,17 @@
 package jugador;
 
 import java.awt.Color;
+import java.io.File;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Random;
 
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+
+import audio.Sonido;
 import entidades.Vibora;
 import juego.Juego;
 import servidor.AccionesServidor;
@@ -112,6 +117,10 @@ public class ManejoJugador implements Runnable, AccionesServidor {
 				break;
 			case -1 :// come manzana para crecer
 				vibora.mover();
+				Sonido sonido = new Sonido();
+				File a = new File("utilidades/moneda.wav");
+				sonido.abrir(a);
+				sonido.reproducir();
 				puntaje ++;
 				Juego.notificarNuevoMovimientoCabeza(vibora.getCabeza(), nombre,1,color);
 				Juego.removerFruta(vibora.getCabeza(), -1);
