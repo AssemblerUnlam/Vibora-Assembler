@@ -11,6 +11,9 @@ import utilidades.Punto;
 
 public class Vibora {
 
+	/**
+	 * La clase Vibora contiene los atributos y metodos de cada vibora del mapa.
+	 */
 	private final int TAMANIO_INICIAL = 3;
 	
 	private List<Punto> cuerpo = new ArrayList<>();

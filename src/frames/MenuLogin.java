@@ -23,13 +23,13 @@ import javax.swing.JPasswordField;
 @SuppressWarnings("serial")
 public class MenuLogin extends JDialog {
 
+	/**
+	 * La clase MenuLogin ejecuta el menu para registrarse en la bd.
+	 */
 	private final JPanel contentPanel = new JPanel();
 	private JTextField textUsuario;
 	private JPasswordField passContrasenia;
 
-	/**
-	 * Create the dialog.
-	 */
 	public MenuLogin() {
 		setResizable(false);
 		setBackground(Color.WHITE);

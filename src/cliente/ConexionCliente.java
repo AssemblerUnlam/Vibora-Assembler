@@ -13,6 +13,10 @@ import utilidades.Punto;
 
 public class ConexionCliente extends Thread implements  AccionesCliente  {
 	
+	
+	/**
+	 * La clase ConexionCliente tiene como función establecer la funcion entre el cliente y servidor.
+	 */
 	private ArrayList<Jugador> puntajeJugadores = new ArrayList<>();
 	private Socket socket = null;
 	private SalidaCliente salidaCliente;

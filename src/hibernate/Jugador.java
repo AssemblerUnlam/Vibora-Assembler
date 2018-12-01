@@ -2,6 +2,9 @@ package hibernate;
 
 public class Jugador {
 	
+	/**
+	 * La clase jugador retorna los datos del jugador en la bd.
+	 */
 	private String usuario ;
 	private String contrasenia;
 	private int puntaje;

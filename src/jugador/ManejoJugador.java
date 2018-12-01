@@ -25,6 +25,9 @@ import utilidades.Punto;
 
 @SuppressWarnings("unused")
 public class ManejoJugador implements Runnable, AccionesServidor {
+	/**
+	 * La clase ManejoJugador un thread que se encarga de administrar a los jugadores.
+	 */
 	private final Socket socketJugador;
 	private SalidaServidor salidaServidor;
 	private EntradaServidor entradaServidor;

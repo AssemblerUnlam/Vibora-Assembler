@@ -29,7 +29,9 @@ import java.awt.Toolkit;
 
 @SuppressWarnings("serial")
 public class MenuInicio extends JFrame {
-
+	/**
+	 * La clase MenuOInicio ejecuta el menu para iniciar el juego.
+	 */
 	private JPanel contentPane;
 
 	public static void main(String[] args) throws ClassNotFoundException, SQLException, LineUnavailableException, IOException, UnsupportedAudioFileException {

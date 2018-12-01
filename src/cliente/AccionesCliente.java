@@ -8,6 +8,10 @@ import jugador.Jugador;
 import utilidades.Punto;
 
 public interface AccionesCliente {
+	
+	/**
+	 * La clase AccionesCliente tiene como función tener todas las funciones que ejecuta el cliente.
+	 */
 	public void enviarNombre (String name); // envio nombre al servidor del cliente que se conecta
 	default public void nombreOK(){};
 	default public void nombreMal(){};

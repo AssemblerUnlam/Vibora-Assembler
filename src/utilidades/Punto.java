@@ -5,6 +5,9 @@ import java.util.Random;
 import juego.Juego;
 
 public class Punto {
+	/**
+	 * La clase Punto contiene los basicos de un punto.
+	 */
 	@Override
 	public String toString() {
 		return "Punto [x=" + x + ", y=" + y + "]";

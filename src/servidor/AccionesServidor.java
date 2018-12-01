@@ -9,6 +9,9 @@ import jugador.ManejoJugador;
 import utilidades.Punto;
 
 public interface AccionesServidor {
+	/**
+	 * La interface AccionesServidor contiene los metodos que van a ser ejecutados por el servidor .
+	 */
 	default public void recibirNombre(String nombre){}
 	public void nombreOK();
 	public void nombreMal();

@@ -13,6 +13,9 @@ import utilidades.Punto;
 
 @SuppressWarnings("unused")
 public class SalidaServidor implements AccionesServidor {
+	/**
+	 * La clase SalidaServidor maneja la salida de datos del servidor hacia el cliente.
+	 */
 	PrintWriter os;
 	
 	public SalidaServidor(OutputStream salida) throws IOException{

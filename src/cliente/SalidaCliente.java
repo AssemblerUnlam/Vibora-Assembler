@@ -7,6 +7,10 @@ import java.io.PrintWriter;
 
 public class SalidaCliente  implements AccionesCliente{
 	
+	
+	/**
+	 * La clase SalidaCliente tiene como función enviar informacion hacia el servidor.
+	 */
 	PrintWriter os;
 	
 	public SalidaCliente(OutputStream salida) throws IOException{

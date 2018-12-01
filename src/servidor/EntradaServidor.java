@@ -6,11 +6,13 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 import jugador.ManejoJugador;
-import utilidades.MyProtocolException;
 
 
 
 public class EntradaServidor {
+	/**
+	 * La clase EntradaServidor maneja la entrada de datos del cliente al servidor.
+	 */
 	ManejoJugador manejoJugador;
 	InputStream entrada;
 	
@@ -38,7 +40,6 @@ public class EntradaServidor {
 					manejoJugador.cambiarDireccion(dir);
 					break;
 				default :
-					throw new MyProtocolException("Ivalid input on server : " + linea);
 				}
 			}
 		}

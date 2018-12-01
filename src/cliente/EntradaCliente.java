@@ -8,10 +8,13 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 import jugador.Jugador;
-import utilidades.MyProtocolException;
 import utilidades.Punto;
 
 public class EntradaCliente {
+	
+	/**
+	 * La clase EntradaCliente tiene como función ejecutar respuestas del servidor.
+	 */
 	
 	private AccionesCliente accionesCliente;
 	private InputStream entrada;
@@ -131,7 +134,6 @@ public class EntradaCliente {
 					accionesCliente.dibujarVelocidadFruta(new Punto(Integer.valueOf(x), Integer.valueOf(y)));
 					break;
 				default:
-					throw new MyProtocolException("Entrada inválida en el cliente: " + linea);
 				}
 			}
 		}

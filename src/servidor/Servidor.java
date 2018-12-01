@@ -27,6 +27,9 @@ import jugador.ManejoJugador;
 
 
 public class Servidor extends Thread {
+	/**
+	 * La clase Servidor ejecuta el servidor.
+	 */
 	private int puerto = 1234;
 	private static ServerSocket servidor;
 	private boolean detener = false;

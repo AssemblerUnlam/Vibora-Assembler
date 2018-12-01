@@ -14,6 +14,9 @@ import utilidades.Punto;
 
 
 public class Juego {
+	/**
+	 * La clase Juego es la encargada de generar el mapa y el timer del juego.
+	 */
 	public static int ANCHO = 200;
 	public static int ALTO = 200;
 	static int mapa[][]= new int[ALTO][ANCHO];

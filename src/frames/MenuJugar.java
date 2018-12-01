@@ -26,10 +26,10 @@ import java.awt.Toolkit;
 @SuppressWarnings("serial")
 public class MenuJugar extends JFrame {
 
-	private JPanel contentPane;
 	/**
-	 * Launch the application.
+	 * La clase MenuJugar ejecuta el menu para iniciar sesion o registrarse.
 	 */
+	private JPanel contentPane;
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {

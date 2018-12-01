@@ -17,7 +17,9 @@ import utilidades.Punto;
 
 public class PantallaJuego extends JComponent {
 		
-	
+	/**
+	 * La clase PantallaJuego es la encargada de pintar y mostrar el mapa en pantalla.
+	 */
 	private static final long serialVersionUID = 1L;
 
 	BufferedImage imagen;

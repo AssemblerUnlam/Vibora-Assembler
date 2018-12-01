@@ -12,7 +12,9 @@ import javax.swing.JOptionPane;
 import audio.Sonido;
 
 public class Conexion {
-
+	/**
+	 * La clase Conexion ejecuta ejecuta la conexion con la bd.
+	 */
 	private static Statement consulta;
 	private static Connection conexion;
 	private static ResultSet resultado;

@@ -6,7 +6,9 @@ import juego.Juego;
 import utilidades.Punto;
 
 public class Fruta {
-	
+	/**
+	 * La clase Fruta contiene los atributos y metodos de cada fruta del mapa.
+	 */
 	private ArrayList<Punto> listaFrutas;
 	int cantidadFrutas, velocidadFruta;
 	

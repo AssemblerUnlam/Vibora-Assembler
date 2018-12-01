@@ -3,6 +3,9 @@ package jugador;
 import java.awt.Color;
 
 public class Jugador implements Comparable<Jugador> {
+	/**
+	 * La clase Jugador contiene metodos y atributos de cada jugador.
+	 */
 	Integer puntaje = 0 ;
 	String nombre ="";
 	Color color;

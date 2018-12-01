@@ -1,6 +1,9 @@
 package juego;
 
 public class TimerJuego extends Thread {
+	/**
+	 * La clase TimerJuego controla la velocidad y apariciones de fruta en el mapa.
+	 */
 	final private int base = 75;
 	private int fruta = 0, velocidadFruta=0, duracion=0;
 	private int tiempo = base;

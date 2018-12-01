@@ -13,7 +13,9 @@ import audio.Sonido;
 
 public class Hibernate {
 
-	
+	/**
+	 * La clase Hibernate ejecuta la conexion con la bd.
+	 */
 	public Session conectarConBase() {
 		
 		Configuration cfg = new Configuration();

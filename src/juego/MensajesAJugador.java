@@ -5,6 +5,9 @@ import servidor.Servidor;
 
 public class MensajesAJugador implements JugadorLogueado{
 
+	/**
+	 * La clase MensajesAJugador contiene los metodos para mostrar mensajes en el servidor.
+	 */
 	@Override
 	public void direccionJugador(String nombre, String dir) {
 		Servidor.getLog().append(nombre + " giro " + dir + System.lineSeparator());

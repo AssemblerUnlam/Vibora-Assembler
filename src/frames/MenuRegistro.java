@@ -25,13 +25,13 @@ import java.awt.Color;
 @SuppressWarnings({ "serial", "unused" })
 public class MenuRegistro extends JDialog {
 
+	/**
+	 * La clase MenuRegistro ejecuta el menu para registrarse en la bd.
+	 */
 	private final JPanel contentPanel = new JPanel();
 	private JTextField textUsuario;
 	private JPasswordField passContrasenia;
 
-	/**
-	 * Create the dialog.
-	 */
 	public MenuRegistro() {
 		setResizable(false);
 		setBackground(Color.WHITE);

@@ -31,7 +31,7 @@ import utilidades.Punto;
 public class Cliente extends JFrame{
 
 	/**
-	 * 
+	 * La clase Cliente tiene como función ejecutar el cliente.
 	 */
 	private static final long serialVersionUID = 1L;
 	
