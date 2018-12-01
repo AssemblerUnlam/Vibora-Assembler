@@ -106,6 +106,10 @@ public class ManejoJugador implements Runnable, AccionesServidor {
 		switch( Juego.chequearColision(vibora)){
 			case 1: // collision
 				vibora.muere();
+				Sonido sonido = new Sonido();
+				File ent = new File("utilidades/gameover.wav");
+				sonido.abrir(ent);
+				sonido.reproducir();
 				salidaServidor.muerteVibora();
 				finalizar();
 				break;
@@ -117,10 +121,10 @@ public class ManejoJugador implements Runnable, AccionesServidor {
 				break;
 			case -1 :// come manzana para crecer
 				vibora.mover();
-				Sonido sonido = new Sonido();
+				Sonido comer = new Sonido();
 				File a = new File("utilidades/moneda.wav");
-				sonido.abrir(a);
-				sonido.reproducir();
+				comer.abrir(a);
+				comer.reproducir();
 				puntaje ++;
 				Juego.notificarNuevoMovimientoCabeza(vibora.getCabeza(), nombre,1,color);
 				Juego.removerFruta(vibora.getCabeza(), -1);
