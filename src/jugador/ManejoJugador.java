@@ -13,10 +13,12 @@ import javax.sound.sampled.Clip;
 
 import audio.Sonido;
 import entidades.Vibora;
+import hibernate.Hibernate;
 import juego.Juego;
 import servidor.AccionesServidor;
 import servidor.EntradaServidor;
 import servidor.SalidaServidor;
+import utilidades.Conexion;
 import utilidades.Direccion;
 import utilidades.Punto;
 
@@ -28,7 +30,7 @@ public class ManejoJugador implements Runnable, AccionesServidor {
 	private EntradaServidor entradaServidor;
 	private String nombre = "";
 	private Vibora vibora;
-	private int puntaje ;
+	private int puntaje;
 	private JugadorLogueado logger = null;
 	private boolean detener = false;
 	private Color color;
@@ -117,6 +119,8 @@ public class ManejoJugador implements Runnable, AccionesServidor {
 				File ent = new File("utilidades/gameover.wav");
 				sonido.abrir(ent);
 				sonido.reproducir();
+				Hibernate conexion = new Hibernate();
+				conexion.actualizarPuntaje(nombre, puntaje);
 				salidaServidor.muerteVibora();
 				finalizar();
 				break;
