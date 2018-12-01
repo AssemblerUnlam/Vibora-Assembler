@@ -8,6 +8,7 @@ import java.util.Collection;
 import java.util.Collections;
 
 import jugador.Jugador;
+import servidor.Servidor;
 import utilidades.Punto;
 
 public class ConexionCliente extends Thread implements  AccionesCliente  {
@@ -25,11 +26,8 @@ public class ConexionCliente extends Thread implements  AccionesCliente  {
 		try {
 			salidaCliente = new SalidaCliente(socket.getOutputStream());
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
 	}
 	
 	@Override
@@ -79,8 +77,6 @@ public class ConexionCliente extends Thread implements  AccionesCliente  {
 		
 	}
 
-	
-
 	@Override
 	public void enviarListaJugadores(ArrayList<Jugador> listaJugadores) {
 		Collections.sort(puntajeJugadores);
@@ -116,7 +112,11 @@ public class ConexionCliente extends Thread implements  AccionesCliente  {
 	
 	@Override
 	public void muere() {
+		//**
+		Servidor.quitarJugador();
+		//**
 		finish();
+		// VENTANA: Desea JUGAR otra partida??		
 		cliente.reiniciar();
 	}
 
@@ -142,5 +142,4 @@ public class ConexionCliente extends Thread implements  AccionesCliente  {
 			}	
 		}
 	}
-
 }

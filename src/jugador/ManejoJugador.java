@@ -7,8 +7,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Random;
 
-import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
-
 import entidades.Vibora;
 import juego.Juego;
 import servidor.AccionesServidor;
@@ -18,6 +16,7 @@ import utilidades.Direccion;
 import utilidades.Punto;
 
 
+@SuppressWarnings("unused")
 public class ManejoJugador implements Runnable, AccionesServidor {
 	private final Socket socketJugador;
 	private SalidaServidor salidaServidor;

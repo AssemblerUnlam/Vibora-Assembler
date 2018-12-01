@@ -1,7 +1,5 @@
 package frames;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -22,6 +20,8 @@ import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.EventQueue;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -32,7 +32,11 @@ public class MenuInicio extends JFrame {
 
 	private JPanel contentPane;
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ClassNotFoundException, SQLException, LineUnavailableException, IOException, UnsupportedAudioFileException {
+		cargarInterfaz();
+	}
+
+	public static void cargarInterfaz() throws ClassNotFoundException, SQLException, LineUnavailableException, IOException, UnsupportedAudioFileException {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -42,7 +46,6 @@ public class MenuInicio extends JFrame {
 					frame.setLocation(dim.width / 2 - frame.getWidth() / 2, dim.height / 2 - frame.getHeight() / 2);
 					frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 					frame.setVisible(true);
-
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -52,7 +55,7 @@ public class MenuInicio extends JFrame {
 
 	/**
 	 * Create the frame.
-	 * 
+	 *
 	 * @throws SQLException
 	 * @throws ClassNotFoundException
 	 * @throws LineUnavailableException
@@ -71,13 +74,14 @@ public class MenuInicio extends JFrame {
 		contentPane.setLayout(null);
 
 		Clip sonido = AudioSystem.getClip();
-		File a = new File("megaman_stage_start.wav");
-		sonido.open(AudioSystem.getAudioInputStream(a));
-		sonido.start();
+        File a = new File("utilidades/megaman_stage_start.wav");
+        sonido.open(AudioSystem.getAudioInputStream(a));
+        sonido.start();
 
 		JButton btnJugar = new JButton("Jugar");
 		btnJugar.setBackground(Color.YELLOW);
 		btnJugar.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				try {
 					MenuJugar menuJugar = new MenuJugar();
@@ -87,7 +91,7 @@ public class MenuInicio extends JFrame {
 				}
 
 				Sonido sonido = new Sonido();
-				File a = new File("megaman-x-select.wav");
+				File a = new File("utilidades/megaman-x-select.wav");
 				sonido.abrir(a);
 				sonido.reproducir();
 
@@ -101,10 +105,11 @@ public class MenuInicio extends JFrame {
 		btnSalir.setBackground(Color.YELLOW);
 		btnSalir.setForeground(Color.BLACK);
 		btnSalir.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();
 				Sonido sonido = new Sonido();
-				File a = new File("megaman-x-select.wav");
+				File a = new File("utilidades/megaman-x-select.wav");
 				sonido.abrir(a);
 				sonido.reproducir();
 			}
@@ -120,10 +125,11 @@ public class MenuInicio extends JFrame {
 		contentPane.add(lblSnakeTheGame);
 	}
 
+	@Override
 	public void paint(Graphics gra) {
 		super.paint(gra);
 		try {
-			BufferedImage fondo = ImageIO.read(new File("descarga.jpg"));
+			BufferedImage fondo = ImageIO.read(new File("utilidades/descarga.jpg"));
 			gra.drawImage(fondo, 265, 50, this);
 		} catch (IOException e) {
 			e.printStackTrace();

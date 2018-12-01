@@ -80,6 +80,7 @@ public class MenuRegistro extends JDialog {
 			okButton.setBounds(30, 160, 100, 50);
 			contentPanel.add(okButton);
 			okButton.addActionListener(new ActionListener() {
+				@Override
 				public void actionPerformed(ActionEvent arg0) {
 					Hibernate conectar = new Hibernate();
 
@@ -96,9 +97,10 @@ public class MenuRegistro extends JDialog {
 			cancelButton.setBounds(160, 160, 100, 50);
 			contentPanel.add(cancelButton);
 			cancelButton.addActionListener(new ActionListener() {
+				@Override
 				public void actionPerformed(ActionEvent arg0) {
 					Sonido sonido = new Sonido();
-					File a = new File("megaman-x-select.wav");
+					File a = new File("utilidades/megaman-x-select.wav");
 					sonido.abrir(a);
 					sonido.reproducir();
 					dispose();

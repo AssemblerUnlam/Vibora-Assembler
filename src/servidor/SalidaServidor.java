@@ -6,14 +6,12 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Map;
-import java.util.TreeMap;
-
 import jugador.Jugador;
 import utilidades.Punto;
 
 
 
+@SuppressWarnings("unused")
 public class SalidaServidor implements AccionesServidor {
 	PrintWriter os;
 	

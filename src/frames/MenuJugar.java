@@ -1,7 +1,5 @@
 package frames;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -18,6 +16,8 @@ import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.EventQueue;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -47,7 +47,7 @@ public class MenuJugar extends JFrame {
 			}
 		});
 	}
-
+	
 	/**
 	 * Create the frame.
 	 * @throws SQLException 
@@ -67,11 +67,12 @@ public class MenuJugar extends JFrame {
 		JButton btnRegistro = new JButton("Registrarse");
 		btnRegistro.setBackground(Color.YELLOW);
 		btnRegistro.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				MenuRegistro ventanaRegistro = new MenuRegistro();
 				ventanaRegistro.setVisible(true);
 				Sonido sonido = new Sonido();
-				File a = new File("megaman-x-select.wav");
+				File a = new File("utilidades/megaman-x-select.wav");
 				sonido.abrir(a);
 				sonido.reproducir();
 			}
@@ -83,11 +84,12 @@ public class MenuJugar extends JFrame {
 		btnLogin.setBackground(Color.YELLOW);
 		btnLogin.setForeground(Color.BLACK);
 		btnLogin.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				MenuLogin ventanaLogin = new MenuLogin();
 				ventanaLogin.setVisible(true);
 				Sonido sonido = new Sonido();
-				File a = new File("megaman-x-select.wav");
+				File a = new File("utilidades/megaman-x-select.wav");
 				sonido.abrir(a);
 				sonido.reproducir();
 			}
@@ -103,10 +105,11 @@ public class MenuJugar extends JFrame {
 		contentPane.add(lblSnakeTheGame);
 	}
 	
+	@Override
 	public void paint(Graphics gra) {
 		super.paint(gra);
 		try {
-			BufferedImage fondo = ImageIO.read(new File("descarga.jpg"));
+			BufferedImage fondo = ImageIO.read(new File("utilidades/descarga.jpg"));
 			gra.drawImage(fondo, 265, 50, this);
 		} catch (IOException e) {
 			e.printStackTrace();

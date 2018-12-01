@@ -24,7 +24,7 @@ public class MenuLogin extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private JTextField textUsuario;
-	private JPasswordField passContraseña;
+	private JPasswordField passContraseï¿½a;
 
 	/**
 	 * Create the dialog.
@@ -64,14 +64,14 @@ public class MenuLogin extends JDialog {
 			contentPanel.add(lblUsuario);
 		}
 		{
-			JLabel lblContraseña = new JLabel("Contrase\u00F1a");
-			lblContraseña.setBounds(30, 100, 90, 20);
-			contentPanel.add(lblContraseña);
+			JLabel lblContraseï¿½a = new JLabel("Contrase\u00F1a");
+			lblContraseï¿½a.setBounds(30, 100, 90, 20);
+			contentPanel.add(lblContraseï¿½a);
 		}
 
-		passContraseña = new JPasswordField();
-		passContraseña.setBounds(140, 100, 120, 20);
-		contentPanel.add(passContraseña);
+		passContraseï¿½a = new JPasswordField();
+		passContraseï¿½a.setBounds(140, 100, 120, 20);
+		contentPanel.add(passContraseï¿½a);
 		{
 
 			{
@@ -79,13 +79,14 @@ public class MenuLogin extends JDialog {
 				okButton.setBounds(30, 160, 100, 50);
 				contentPanel.add(okButton);
 				okButton.addActionListener(new ActionListener() {
+					@Override
 					public void actionPerformed(ActionEvent e) {
 						MenuSala menuSala;
 						menuSala = new MenuSala(textUsuario.getText());
 
 						Hibernate conectar = new Hibernate();
 						if (conectar.iniciarSesion(textUsuario.getText(),
-								String.valueOf(passContraseña.getPassword()))) {
+								String.valueOf(passContraseï¿½a.getPassword()))) {
 							dispose();
 							menuSala.setVisible(true);
 						}
@@ -98,6 +99,7 @@ public class MenuLogin extends JDialog {
 				cancelButton.setBounds(160, 160, 100, 50);
 				contentPanel.add(cancelButton);
 				cancelButton.addActionListener(new ActionListener() {
+					@Override
 					public void actionPerformed(ActionEvent arg0) {
 						dispose();
 					}

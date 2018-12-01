@@ -9,12 +9,16 @@ import java.awt.event.WindowEvent;import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
+import java.util.PriorityQueue;
+import java.util.Queue;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.ScrollPaneConstants;
+import javax.swing.WindowConstants;
 
 import juego.MensajesAJugador;
 import juego.Juego;
@@ -33,7 +37,11 @@ public class Servidor extends Thread {
 	private final static int ALTO = 640;
 	private final static int ALTO_LOG = 520;
 	private final static int ANCHO_LOG = ANCHO - 25;
+	//**
+	private static int cantJugadoresConectados;
+	private Queue<ManejoJugador> colaEnEspera = new PriorityQueue<ManejoJugador>();
 	
+	@Override
 	public void run() {
 		try{
 			logger = new MensajesAJugador();
@@ -42,19 +50,30 @@ public class Servidor extends Thread {
 			servidor = new ServerSocket(puerto);
 			log.append("Esperando conexiones..." + System.lineSeparator());
 			servidor.setSoTimeout(1000);
-			Juego.iniciarMapa();
+			
 			while(!detener){
 				try{
 					Socket socketJugador = servidor.accept();
 					log.append("el cliente : " + socketJugador.getInetAddress().getHostAddress() + " se ha conectado" + System.lineSeparator());
 					logger.jugadorConectado(socketJugador.toString());
-					new Thread(new ManejoJugador(socketJugador, logger)).start();
+			//***
+					cantJugadoresConectados++;
+					if(cantJugadoresConectados<2) {
+						this.colaEnEspera.add(new ManejoJugador(socketJugador, logger));
+					}
+					else {
+						Juego.iniciarMapa();
+						new Thread(new ManejoJugador(socketJugador, logger)).start();
+						while(!this.colaEnEspera.isEmpty()) {
+							new Thread(this.colaEnEspera.poll()).start();
+						}
+					}
+			//***
 				}catch(SocketTimeoutException ex){
 				}
 			}
 		} catch (IOException e) {
-		}
-		
+		}		
 	}
 	
 	public synchronized void finalizar(){
@@ -81,7 +100,7 @@ public class Servidor extends Thread {
 		log = new JTextArea();
 		log.setEditable(false);
 		log.setFont(new Font("Times New Roman", Font.PLAIN, 13));
-		JScrollPane scroll = new JScrollPane(log, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		JScrollPane scroll = new JScrollPane(log, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		scroll.setBounds(10, 40, ANCHO_LOG, ALTO_LOG);
 		ventana.add(scroll);
 
@@ -90,6 +109,7 @@ public class Servidor extends Thread {
 		botonIniciar.setText("Iniciar");
 		botonIniciar.setBounds(220, ALTO - 70, 100, 30);
 		botonIniciar.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				server = new Thread(new Servidor());
 				server.start();
@@ -103,6 +123,8 @@ public class Servidor extends Thread {
 		botonDetener.setText("Detener");
 		botonDetener.setBounds(360, ALTO - 70, 100, 30);
 		botonDetener.addActionListener(new ActionListener() {
+			@Override
+			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
 				try {
 					server.stop();
@@ -118,8 +140,10 @@ public class Servidor extends Thread {
 		botonDetener.setEnabled(false);
 		ventana.add(botonDetener);
 
-		ventana.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		ventana.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 		ventana.addWindowListener(new WindowAdapter() {
+			@Override
+			@SuppressWarnings("deprecation")
 			public void windowClosing(WindowEvent evt) {
 				if (servidor != null) {
 					try {
@@ -134,9 +158,7 @@ public class Servidor extends Thread {
 				System.exit(0);
 			}
 		});
-
 		ventana.setVisible(true);
-		
 	}
 	
 	public static JTextArea getLog() {
@@ -146,4 +168,10 @@ public class Servidor extends Thread {
 	public static void setLog(final JTextArea log) {
 		Servidor.log = log;
 	}
+//***
+ 	public static void quitarJugador() {
+ 		System.out.println("SERVIDOR: Cant.Jugadores: "+cantJugadoresConectados);
+ 		cantJugadoresConectados--;
+ 	}
+//***
 }
