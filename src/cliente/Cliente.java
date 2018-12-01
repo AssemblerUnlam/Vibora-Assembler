@@ -57,8 +57,6 @@ public class Cliente extends JFrame{
 	private JTextField direccionField;
 	private JLabel direccionLabel;
 	
-//	private static Color color;
-	
 
 	public Cliente(String nombreUsuario) {
 		puerto = 1234;
@@ -98,7 +96,6 @@ public class Cliente extends JFrame{
 
 		
 		nombreField = new JTextField(5);
-//		botonAceptar = new JButton("Conectar");
 		botonAceptar = new JButton("Comenzar JUEGO");		
 
 		pantallaJuego.addKeyListener( 
@@ -126,10 +123,7 @@ public class Cliente extends JFrame{
 		
 		direccionField = new JTextField("127.0.0.1"); //IP Servidor
 		direccionField.setPreferredSize(new Dimension(90, 20));
-		direccionField.setEditable(false); //Lo mostramos grisado
-		
-//		botonAceptar.setEnabled(false);//El boton COMENZAR aparece grisado hasta que haya jugadores suficientes
-		
+	
 		botonAceptar.addActionListener( l->{
 			this.nombre = nombreField.getText();
 			setContentPane(pantalla);
@@ -171,7 +165,7 @@ public class Cliente extends JFrame{
 		pantalla.add(listaJugadoresPane,BorderLayout.EAST);
 
 		nombreField.setText(this.nombre);
-		//***
+
 		nombreField.setEditable(false);
 		nombreField.addKeyListener(new KeyListener() {
 			
@@ -198,7 +192,7 @@ public class Cliente extends JFrame{
 		setContentPane(comienzoPanel);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		pack();
-		setLocationRelativeTo(null); //centre la fenetre
+		setLocationRelativeTo(null);
 		setVisible(true);
 	}
 

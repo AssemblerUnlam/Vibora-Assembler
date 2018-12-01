@@ -38,10 +38,8 @@ public class Fruta {
 			if(punto.getX() == p.getX() && punto.getY() == p.getY()){
 				switch(indice){
 				case -1:
-					System.out.println("Nueva Fruta " + cantidadFrutas);
 					cantidadFrutas --; break;
 				case -2:
-					System.out.println("Nueva Velocidad Fruta " + velocidadFruta);
 					velocidadFruta --; break;
 				}
 				return aBorrar;

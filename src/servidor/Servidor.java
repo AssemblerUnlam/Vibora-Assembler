@@ -37,7 +37,6 @@ public class Servidor extends Thread {
 	private final static int ALTO = 640;
 	private final static int ALTO_LOG = 520;
 	private final static int ANCHO_LOG = ANCHO - 25;
-	//**
 	private static int cantJugadoresConectados;
 	private Queue<ManejoJugador> colaEnEspera = new PriorityQueue<ManejoJugador>();
 	
@@ -65,7 +64,6 @@ public class Servidor extends Thread {
 							new Thread(this.colaEnEspera.poll()).start();
 						}
 					}
-			//***
 				}catch(SocketTimeoutException ex){
 				}
 			}
@@ -165,10 +163,8 @@ public class Servidor extends Thread {
 	public static void setLog(final JTextArea log) {
 		Servidor.log = log;
 	}
-//***
+
  	public static void quitarJugador() {
- 		System.out.println("SERVIDOR: Cant.Jugadores: "+cantJugadoresConectados);
  		cantJugadoresConectados--;
  	}
-//***
 }

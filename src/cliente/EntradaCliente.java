@@ -32,7 +32,8 @@ public class EntradaCliente {
 		
 		try(BufferedReader b = new BufferedReader(new InputStreamReader(entrada))){
 			while(!detener){
-				String linea = b.readLine();
+				String linea = new String("");
+				linea = b.readLine();
 				switch(linea){
 				case "NOMBRE OK":
 					accionesCliente.nombreOK();
@@ -57,15 +58,12 @@ public class EntradaCliente {
 					while(!(x = b.readLine()).equals(".")){
 						y = b.readLine();
 						
-//PRUEBA para salvar la excepcion ***NumberFormatException***
 						Punto p;
 						if(x == null || x.isEmpty())
-							p = new Punto(0,0); // Coordenadas, OK?
+							p = new Punto(0,0);
 						else
 							p = new Punto(Integer.valueOf(x), Integer.valueOf(y));
-//						
-//						Punto p = new Punto(Integer.valueOf(x), Integer.valueOf(y));
-// **********************************************************
+						
 						cuerpo.add(p);
 						
 					}
@@ -77,15 +75,13 @@ public class EntradaCliente {
 					color = new Color(Integer.parseInt(b.readLine()));
 					while(!(x = b.readLine()).equals(".")){
 						y = b.readLine();
-//PRUEBA para salvar la excepcion ***NumberFormatException***
+
 						Punto p;
 						if(x == null || x.isEmpty())
-							p = new Punto(0,0); // Coordenadas, OK?
+							p = new Punto(0,0);
 						else
 							p = new Punto(Integer.valueOf(x), Integer.valueOf(y));
-//						
-//						Punto p = new Punto(Integer.valueOf(x), Integer.valueOf(y));
-// **********************************************************
+
 						cuerpo.add(p);
 					}
 					accionesCliente.iniciarVibora(cuerpo,nombre,color);
