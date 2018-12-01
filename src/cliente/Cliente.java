@@ -267,7 +267,8 @@ public class Cliente extends JFrame{
 	
     @SuppressWarnings("serial")
 	private static class Pintar extends DefaultListCellRenderer {
-        public Component getListCellRendererComponent( @SuppressWarnings("rawtypes") JList list, Object value, int index, boolean isSelected, boolean cellHasFocus ) {
+        @Override
+		public Component getListCellRendererComponent( @SuppressWarnings("rawtypes") JList list, Object value, int index, boolean isSelected, boolean cellHasFocus ) {
             Component c = super.getListCellRendererComponent( list, value, index, isSelected, cellHasFocus );
             String cadena= (String)value;
             for(int i = 0;i<jugadoresOnline.size();i++) {
