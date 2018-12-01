@@ -32,6 +32,8 @@ public class ManejoJugador implements Runnable, AccionesServidor {
 	private JugadorLogueado logger = null;
 	private boolean detener = false;
 	private Color color;
+	Sonido audioPpal = new Sonido();
+
 
 	private enum EstadoJugador{ INICIO, LOGUEADO }
 	private EstadoJugador estado = EstadoJugador.INICIO;
@@ -92,6 +94,10 @@ public class ManejoJugador implements Runnable, AccionesServidor {
 			if(estado == EstadoJugador.INICIO){
 				this.nombre=nombre;
 				Juego.agregarJugador(nuevoNombre, this);
+
+				File iniciar = new File("utilidades/principal.wav");
+				audioPpal.abrir(iniciar);
+				audioPpal.reproducir();
 			}
 		}
 
@@ -106,6 +112,7 @@ public class ManejoJugador implements Runnable, AccionesServidor {
 		switch( Juego.chequearColision(vibora)){
 			case 1: // collision
 				vibora.muere();
+				audioPpal.detener();
 				Sonido sonido = new Sonido();
 				File ent = new File("utilidades/gameover.wav");
 				sonido.abrir(ent);

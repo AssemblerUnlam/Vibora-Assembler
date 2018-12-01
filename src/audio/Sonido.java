@@ -31,6 +31,9 @@ public class Sonido {
          public void reproducir() {
         	 sonido.start();
          }
-     
+         
+         public void detener() {
+        	 sonido.stop();
+         }
 
 }
