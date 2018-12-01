@@ -17,7 +17,7 @@ public class Juego {
 	public static int ANCHO = 200;
 	public static int ALTO = 200;
 	static int mapa[][]= new int[ALTO][ANCHO];
-	private static Tickle tickle;
+	private static TimerJuego timerJuego;
 	
 	
 	
@@ -35,8 +35,8 @@ public class Juego {
 			mapa[ALTO-1][i] = 999;
 		}
 		fruta=new Fruta();
-		tickle = new Tickle();
-		tickle.start();
+		timerJuego = new TimerJuego();
+		timerJuego.start();
 	}
 	
 	
@@ -160,7 +160,7 @@ public class Juego {
 
 
 	public static void cambiarVelocidad() {
-		tickle.setTiempo(10);
+		timerJuego.setTiempo(10);
 		
 	}
 	

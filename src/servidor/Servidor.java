@@ -45,7 +45,6 @@ public class Servidor extends Thread {
 	public void run() {
 		try{
 			logger = new MensajesAJugador();
-			logger.mensajeSistema ("Servidor online");		
 			log.append("Iniciando el servidor..." + System.lineSeparator());
 			servidor = new ServerSocket(puerto);
 			log.append("Esperando conexiones..." + System.lineSeparator());
@@ -55,8 +54,6 @@ public class Servidor extends Thread {
 				try{
 					Socket socketJugador = servidor.accept();
 					log.append("el cliente : " + socketJugador.getInetAddress().getHostAddress() + " se ha conectado" + System.lineSeparator());
-					logger.jugadorConectado(socketJugador.toString());
-			//***
 					cantJugadoresConectados++;
 					if(cantJugadoresConectados<2) {
 						this.colaEnEspera.add(new ManejoJugador(socketJugador, logger));

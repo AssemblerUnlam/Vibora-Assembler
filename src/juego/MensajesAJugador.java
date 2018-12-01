@@ -7,13 +7,7 @@ public class MensajesAJugador implements JugadorLogueado{
 
 	@Override
 	public void direccionJugador(String nombre, String dir) {
-		System.out.println(nombre + " giro " + dir);
-	}
-
-	@Override
-	public void jugadorConectado(String ip) {
-		System.out.println("Conectando a  ..." + ip );
-		
+		Servidor.getLog().append(nombre + " giro " + dir);
 	}
 
 	@Override
@@ -29,20 +23,8 @@ public class MensajesAJugador implements JugadorLogueado{
 	}
 
 	@Override
-	public void unirJugadorAJuego(String nombre) {
-		System.out.println("Nuevo juego ejecutado por : " + nombre);
-		
-	}
-
-	@Override
 	public void muerteVibora(String nombre) {
-		System.out.println("Murio la vibora de : "+ nombre);
-		
-	}
-
-	@Override
-	public void mensajeSistema(String mensaje) {
-		System.out.println("Entrando mensaje de sistema : " + mensaje);
+		Servidor.getLog().append("Murio la vibora de : "+ nombre);
 		
 	}
 

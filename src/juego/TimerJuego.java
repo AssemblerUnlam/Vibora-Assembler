@@ -1,6 +1,6 @@
 package juego;
 
-public class Tickle extends Thread {
+public class TimerJuego extends Thread {
 	final private int base = 75;
 	private int fruta = 0, velocidadFruta=0, duracion=0;
 	private int tiempo = base;

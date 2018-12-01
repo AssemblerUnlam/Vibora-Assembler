@@ -57,7 +57,6 @@ public class ManejoJugador implements Runnable, AccionesServidor {
 			entradaServidor.doRun();
 		}catch (IOException e){
 			if(!detener){
-				logger.mensajeSistema("se detuvo el jugador");
 				finalizar();
 			}
 		}
@@ -88,7 +87,6 @@ public class ManejoJugador implements Runnable, AccionesServidor {
 			if(estado == EstadoJugador.INICIO){
 				this.nombre=nombre;
 				Juego.agregarJugador(nuevoNombre, this);
-				logger.unirJugadorAJuego(nuevoNombre);
 			}
 		}
 
@@ -210,7 +208,6 @@ public class ManejoJugador implements Runnable, AccionesServidor {
 				d=Direccion.DERECHA;
 				break;
 			default:
-				logger.mensajeSistema("tecla invalida :" +dir);
 			}
 			vibora.setDireccion(d);
 			logger.direccionJugador(nombre, dir);
