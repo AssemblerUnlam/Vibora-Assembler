@@ -7,6 +7,7 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import cliente.Cliente;
 import hibernate.Hibernate;
 
 import javax.swing.JLabel;
@@ -24,7 +25,7 @@ public class MenuLogin extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private JTextField textUsuario;
-	private JPasswordField passContrase�a;
+	private JPasswordField passContrasenia;
 
 	/**
 	 * Create the dialog.
@@ -64,14 +65,14 @@ public class MenuLogin extends JDialog {
 			contentPanel.add(lblUsuario);
 		}
 		{
-			JLabel lblContrase�a = new JLabel("Contrase\u00F1a");
-			lblContrase�a.setBounds(30, 100, 90, 20);
-			contentPanel.add(lblContrase�a);
+			JLabel lblContrasenia = new JLabel("Contrase\u00F1a");
+			lblContrasenia.setBounds(30, 100, 90, 20);
+			contentPanel.add(lblContrasenia);
 		}
 
-		passContrase�a = new JPasswordField();
-		passContrase�a.setBounds(140, 100, 120, 20);
-		contentPanel.add(passContrase�a);
+		passContrasenia = new JPasswordField();
+		passContrasenia.setBounds(140, 100, 120, 20);
+		contentPanel.add(passContrasenia);
 		{
 
 			{
@@ -81,14 +82,17 @@ public class MenuLogin extends JDialog {
 				okButton.addActionListener(new ActionListener() {
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						MenuSala menuSala;
-						menuSala = new MenuSala(textUsuario.getText());
+//						MenuSala menuSala;
+//						menuSala = new MenuSala(textUsuario.getText());
 
 						Hibernate conectar = new Hibernate();
 						if (conectar.iniciarSesion(textUsuario.getText(),
-								String.valueOf(passContrase�a.getPassword()))) {
+								String.valueOf(passContrasenia.getPassword()))) {
 							dispose();
-							menuSala.setVisible(true);
+							
+							new Cliente(textUsuario.getText());
+//							menuSala.setVisible(true);
+							
 						}
 					}
 				});

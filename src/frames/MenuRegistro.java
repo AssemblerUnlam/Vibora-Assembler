@@ -22,12 +22,12 @@ import java.awt.event.ActionEvent;
 import javax.swing.JPasswordField;
 import java.awt.Color;
 
-@SuppressWarnings("serial")
+@SuppressWarnings({ "serial", "unused" })
 public class MenuRegistro extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private JTextField textUsuario;
-	private JPasswordField passContraseña;
+	private JPasswordField passContrasenia;
 
 	/**
 	 * Create the dialog.
@@ -67,14 +67,14 @@ public class MenuRegistro extends JDialog {
 			contentPanel.add(lblUsuario);
 		}
 		{
-			JLabel lblContraseña = new JLabel("Contrase\u00F1a");
-			lblContraseña.setBounds(30, 100, 90, 20);
-			contentPanel.add(lblContraseña);
+			JLabel lblContrasenia = new JLabel("Contrase\u00F1a");
+			lblContrasenia.setBounds(30, 100, 90, 20);
+			contentPanel.add(lblContrasenia);
 		}
 
-		passContraseña = new JPasswordField();
-		passContraseña.setBounds(140, 100, 120, 20);
-		contentPanel.add(passContraseña);
+		passContrasenia = new JPasswordField();
+		passContrasenia.setBounds(140, 100, 120, 20);
+		contentPanel.add(passContrasenia);
 		{
 			JButton okButton = new JButton("Confirmar");
 			okButton.setBounds(30, 160, 100, 50);
@@ -84,7 +84,7 @@ public class MenuRegistro extends JDialog {
 				public void actionPerformed(ActionEvent arg0) {
 					Hibernate conectar = new Hibernate();
 
-					if (conectar.registrar(textUsuario.getText(), String.valueOf(passContraseña.getPassword())))
+					if (conectar.registrar(textUsuario.getText(), String.valueOf(passContrasenia.getPassword())))
 						dispose();
 				}
 			});

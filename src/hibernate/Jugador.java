@@ -3,7 +3,7 @@ package hibernate;
 public class Jugador {
 	
 	private String usuario ;
-	private String contraseña;
+	private String contrasenia;
 	private int puntaje;
 	
 	public String getUsuario() {
@@ -14,12 +14,12 @@ public class Jugador {
 		this.usuario = usuario;
 	}
 	
-	public String getContraseña() {
-		return contraseña;
+	public String getContrasenia() {
+		return contrasenia;
 	}
 	
-	public void setContraseña(String contraseña) {
-		this.contraseña = contraseña;
+	public void setContrasenia(String contrasenia) {
+		this.contrasenia = contrasenia;
 	}
 	
 	public int getPuntaje() {
@@ -34,7 +34,7 @@ public class Jugador {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((contraseña == null) ? 0 : contraseña.hashCode());
+		result = prime * result + ((contrasenia == null) ? 0 : contrasenia.hashCode());
 		result = prime * result + ((usuario == null) ? 0 : usuario.hashCode());
 		return result;
 	}
@@ -48,10 +48,10 @@ public class Jugador {
 		if (getClass() != obj.getClass())
 			return false;
 		Jugador other = (Jugador) obj;
-		if (contraseña == null) {
-			if (other.contraseña != null)
+		if (contrasenia == null) {
+			if (other.contrasenia != null)
 				return false;
-		} else if (!contraseña.equals(other.contraseña))
+		} else if (!contrasenia.equals(other.contrasenia))
 			return false;
 		if (usuario == null) {
 			if (other.usuario != null)
@@ -60,6 +60,5 @@ public class Jugador {
 			return false;
 		return true;
 	}
-	
 	
 }

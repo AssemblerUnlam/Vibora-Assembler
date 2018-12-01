@@ -24,9 +24,9 @@ public class Hibernate {
 	}
 
 	@SuppressWarnings("unchecked")
-	public boolean registrar(String usuario, String contraseña) {
+	public boolean registrar(String usuario, String contrasenia) {
 
-		if (usuario.isEmpty() || contraseña.isEmpty()) {
+		if (usuario.isEmpty() || contrasenia.isEmpty()) {
 			JOptionPane.showMessageDialog(null, "Se deben completar todos los campos", "Error al registrar", 2);
 			return false;
 		}
@@ -45,7 +45,7 @@ public class Hibernate {
 
 		Jugador jugador = new Jugador();
 		jugador.setUsuario(usuario);
-		jugador.setContraseña(contraseña);
+		jugador.setContrasenia(contrasenia);
 		jugador.setPuntaje(0);
 
 		try {
@@ -53,7 +53,7 @@ public class Hibernate {
 			tx.commit();
 
 			Sonido sonido = new Sonido();
-			File a = new File("mario-bros_vida.wav");
+			File a = new File("utilidades/mario-bros_vida.wav");
 			sonido.abrir(a);
 			sonido.reproducir();
 			JOptionPane.showMessageDialog(null, "¡Bienvenido " + usuario + " a Snake The GAME!", "Bienvenido", 1);
@@ -65,7 +65,7 @@ public class Hibernate {
 	}
 
 	@SuppressWarnings("unchecked")
-	public boolean iniciarSesion(String usuario, String contraseña) {
+	public boolean iniciarSesion(String usuario, String contrasenia) {
 
 		Session session = conectarConBase();
 
@@ -74,11 +74,11 @@ public class Hibernate {
 			Query q = session.createQuery("select j.usuario from Jugador j");
 			List<String> listaDeUsuarios = q.getResultList();
 
-			q = session.createQuery("select j.contraseña from Jugador j");
-			List<String> listaDeContraseñas = q.getResultList();
+			q = session.createQuery("select j.contrasenia from Jugador j");
+			List<String> listaDeContrasenias = q.getResultList();
 
 			for (int i = 0; i < listaDeUsuarios.size(); i++) {
-				if (usuario.equals(listaDeUsuarios.get(i)) && contraseña.equals(listaDeContraseñas.get(i)))
+				if (usuario.equals(listaDeUsuarios.get(i)) && contrasenia.equals(listaDeContrasenias.get(i)))
 					return true;
 			}
 
