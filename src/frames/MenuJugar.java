@@ -16,14 +16,39 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.EventQueue;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Toolkit;
 
 @SuppressWarnings("serial")
 public class MenuJugar extends JFrame {
 
 	private JPanel contentPane;
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					MenuJugar frame = new MenuJugar();
+					Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+					frame.setSize(800, 600);
+					frame.setLocation(dim.width / 2 - frame.getWidth() / 2, dim.height / 2 - frame.getHeight() / 2);
+					frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					frame.setVisible(true);
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+	
 	/**
 	 * Create the frame.
 	 * @throws SQLException 
@@ -44,6 +69,7 @@ public class MenuJugar extends JFrame {
 		JButton btnRegistro = new JButton("Registrarse");
 		btnRegistro.setBackground(Color.YELLOW);
 		btnRegistro.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				MenuRegistro ventanaRegistro = new MenuRegistro();
 				ventanaRegistro.setVisible(true);
@@ -60,6 +86,7 @@ public class MenuJugar extends JFrame {
 		btnLogin.setBackground(Color.YELLOW);
 		btnLogin.setForeground(Color.BLACK);
 		btnLogin.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				MenuLogin ventanaLogin = new MenuLogin();
 				ventanaLogin.setVisible(true);
@@ -80,6 +107,7 @@ public class MenuJugar extends JFrame {
 		contentPane.add(lblSnakeTheGame);
 	}
 	
+	@Override
 	public void paint(Graphics gra) {
 		super.paint(gra);
 		try {

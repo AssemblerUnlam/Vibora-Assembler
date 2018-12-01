@@ -21,6 +21,8 @@ import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.EventQueue;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -36,12 +38,20 @@ public class MenuInicio extends JFrame {
 	}
 
 	public static void cargarInterfaz() throws ClassNotFoundException, SQLException, LineUnavailableException, IOException, UnsupportedAudioFileException {
-			MenuInicio frame = new MenuInicio();
-			Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-			frame.setSize(800, 600);
-			frame.setLocation(dim.width / 2 - frame.getWidth() / 2, dim.height / 2 - frame.getHeight() / 2);
-			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			frame.setVisible(true);
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {		
+					MenuInicio frame = new MenuInicio();
+					Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+					frame.setSize(800, 600);
+					frame.setLocation(dim.width / 2 - frame.getWidth() / 2, dim.height / 2 - frame.getHeight() / 2);
+					frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});			
 	}
 
 	/**
@@ -71,6 +81,7 @@ public class MenuInicio extends JFrame {
 		JButton btnJugar = new JButton("Jugar");
 		btnJugar.setBackground(Color.YELLOW);
 		btnJugar.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				try {
 					MenuJugar menuJugar = new MenuJugar();
@@ -92,6 +103,7 @@ public class MenuInicio extends JFrame {
 		btnSalir.setBackground(Color.YELLOW);
 		btnSalir.setForeground(Color.BLACK);
 		btnSalir.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();
 				Sonido sonido = new Sonido();
@@ -111,6 +123,7 @@ public class MenuInicio extends JFrame {
 		contentPane.add(lblSnakeTheGame);
 	}
 	
+	@Override
 	public void paint(Graphics gra) {
 		super.paint(gra);
 		try {
