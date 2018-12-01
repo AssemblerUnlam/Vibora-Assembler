@@ -136,14 +136,14 @@ public class ManejoJugador implements Runnable, AccionesServidor {
 				File a = new File("utilidades/moneda.wav");
 				comer.abrir(a);
 				comer.reproducir();
-				puntaje ++;
-				Juego.notificarNuevoMovimientoCabeza(vibora.getCabeza(), nombre,1,color);
+				puntaje += 10;
+				Juego.notificarNuevoMovimientoCabeza(vibora.getCabeza(), nombre,10,color);
 				Juego.removerFruta(vibora.getCabeza(), -1);
 				break;
 			case -2 :// come manzana azul para crecer y velocidad
 				vibora.mover();
-				puntaje ++;
-				Juego.notificarNuevoMovimientoCabeza(vibora.getCabeza(), nombre,1,color);
+				puntaje += 25;
+				Juego.notificarNuevoMovimientoCabeza(vibora.getCabeza(), nombre,25,color);
 				Juego.removerFruta(vibora.getCabeza(), -2);
 				Juego.cambiarVelocidad();
 				break;
