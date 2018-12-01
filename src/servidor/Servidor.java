@@ -17,6 +17,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.ScrollPaneConstants;
+import javax.swing.WindowConstants;
 
 import juego.MensajesAJugador;
 import juego.Juego;
@@ -39,6 +41,7 @@ public class Servidor extends Thread {
 	private static int cantJugadoresConectados;
 	private Queue<ManejoJugador> colaEnEspera = new PriorityQueue<ManejoJugador>();
 	
+	@Override
 	public void run() {
 		try{
 			logger = new MensajesAJugador();
@@ -97,7 +100,7 @@ public class Servidor extends Thread {
 		log = new JTextArea();
 		log.setEditable(false);
 		log.setFont(new Font("Times New Roman", Font.PLAIN, 13));
-		JScrollPane scroll = new JScrollPane(log, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		JScrollPane scroll = new JScrollPane(log, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		scroll.setBounds(10, 40, ANCHO_LOG, ALTO_LOG);
 		ventana.add(scroll);
 
@@ -106,6 +109,7 @@ public class Servidor extends Thread {
 		botonIniciar.setText("Iniciar");
 		botonIniciar.setBounds(220, ALTO - 70, 100, 30);
 		botonIniciar.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				server = new Thread(new Servidor());
 				server.start();
@@ -119,6 +123,7 @@ public class Servidor extends Thread {
 		botonDetener.setText("Detener");
 		botonDetener.setBounds(360, ALTO - 70, 100, 30);
 		botonDetener.addActionListener(new ActionListener() {
+			@Override
 			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
 				try {
@@ -135,8 +140,9 @@ public class Servidor extends Thread {
 		botonDetener.setEnabled(false);
 		ventana.add(botonDetener);
 
-		ventana.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		ventana.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 		ventana.addWindowListener(new WindowAdapter() {
+			@Override
 			@SuppressWarnings("deprecation")
 			public void windowClosing(WindowEvent evt) {
 				if (servidor != null) {

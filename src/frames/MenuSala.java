@@ -47,6 +47,7 @@ public class MenuSala extends JDialog {
 		botonUnirse.setBounds(160, 160, 100, 50);
 		contentPanel.add(botonUnirse);
 		botonUnirse.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				new Cliente(nombreUsuario);
 			}
@@ -56,6 +57,7 @@ public class MenuSala extends JDialog {
 		DefaultListModel<String> model = new DefaultListModel<String>();
 		JList<String> lista = new JList<String>();
 		lista.addListSelectionListener(new ListSelectionListener() {
+			@Override
 			public void valueChanged(ListSelectionEvent arg0) {
 				botonUnirse.setEnabled(true);
 			}
@@ -68,6 +70,7 @@ public class MenuSala extends JDialog {
 		contentPanel.add(botonCrearSala);
 		
 		botonCrearSala.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				model.addElement(textField.getText());
 				lista.setModel(model);

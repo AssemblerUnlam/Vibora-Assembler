@@ -79,6 +79,7 @@ public class MenuLogin extends JDialog {
 				okButton.setBounds(30, 160, 100, 50);
 				contentPanel.add(okButton);
 				okButton.addActionListener(new ActionListener() {
+					@Override
 					public void actionPerformed(ActionEvent e) {
 						new Cliente(textUsuario.getText());
 					}
@@ -91,6 +92,7 @@ public class MenuLogin extends JDialog {
 				cancelButton.setBounds(160, 160, 100, 50);
 				contentPanel.add(cancelButton);
 				cancelButton.addActionListener(new ActionListener() {
+					@Override
 					public void actionPerformed(ActionEvent arg0) {
 						dispose();
 					}

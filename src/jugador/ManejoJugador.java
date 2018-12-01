@@ -7,8 +7,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Random;
 
-import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
-
 import entidades.Vibora;
 import juego.Juego;
 import servidor.AccionesServidor;
